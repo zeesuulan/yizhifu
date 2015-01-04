@@ -8,10 +8,10 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+	.controller('LoginCtrl', function($scope) {
+
+		$scope.login = function(){
+
+			// console.log($scope.username, $scope.password)
+		}
+	});

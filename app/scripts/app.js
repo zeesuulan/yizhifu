@@ -22,14 +22,17 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/usermanagement', {
+        templateUrl: 'views/usermanagement.html',
+        controller: 'UserManageMementCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }).run(function(){
+    console.log("Run")
+    //check 是否登录
+  })
