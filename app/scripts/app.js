@@ -29,6 +29,10 @@ angular
                 templateUrl: 'views/usermanagement.html',
                 controller: 'UserManageMementCtrl'
             })
+            .when('/info', {
+              templateUrl: 'views/info.html',
+              controller: 'InfoCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
