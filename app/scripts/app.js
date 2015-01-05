@@ -30,13 +30,17 @@ angular
                 controller: 'UserManageMementCtrl'
             })
             .when('/info', {
-              templateUrl: 'views/info.html',
-              controller: 'InfoCtrl'
+                templateUrl: 'views/info.html',
+                controller: 'InfoCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
+
+
     }).run(function() {
-        console.log("Run")
+
+
+        console.log('Run')
             //check 是否登录
     })

@@ -8,10 +8,13 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-	.controller('LoginCtrl', function($scope) {
+	.controller('LoginCtrl', function($scope, $location) {
 
 		$scope.login = function(){
 
-			// console.log($scope.username, $scope.password)
+			console.log($scope.username, $scope.password)
+
+
+			$location.url("/info")
 		}
 	});
