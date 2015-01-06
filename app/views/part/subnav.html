@@ -1,4 +1,11 @@
 <div id="subnav">
+	<div id="province-box">
+		<label for="province">请选择省平台：</label>
+		<select id="province" ng-model="province">
+			<option value="">请选择</option>
+			<option value="北京">北京</option>
+		</select>
+	</div>
     <span>所属区域：{{location}}</span>
     <span>登录者：{{username}}({{role}})</span>
     <span>当前日期：{{datetime | date: "yyyy年MM月dd日"}}</span>
