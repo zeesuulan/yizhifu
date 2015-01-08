@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/page.css">
   </head>
   <body ng-app="yizhifuApp">
-      <div ng-view="" id="viewbox"></div>
+      <div ui-view id="viewbox"></div>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -26,6 +26,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ui-router/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -34,6 +35,7 @@
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/usermanagement.js"></script>
         <script src="scripts/controllers/info.js"></script>
+        <script src="scripts/controllers/info.userlist.js"></script>
         <script src="scripts/directives/header.js"></script>
         <script src="scripts/directives/menu.js"></script>
         <script src="scripts/directives/subnav.js"></script>

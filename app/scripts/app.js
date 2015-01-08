@@ -15,27 +15,43 @@ angular
         'ngCookies',
         'ngMessages',
         'ngResource',
-        'ngRoute',
+        // 'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'ui.router'
     ])
-    .config(function($routeProvider) {
-        $routeProvider
-            .when('/', {
+    .config(function($stateProvider) {
+
+        $stateProvider
+            .state('index', {
+                url: '/index',
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl'
             })
-            .when('/usermanagement', {
+            .state('usermanagement', {
+                url:'/usermanagement',
                 templateUrl: 'views/usermanagement.html',
                 controller: 'UserManageMementCtrl'
             })
-            .when('/info', {
+
+            .state('info', {
+                url: '/info',
                 templateUrl: 'views/info.html',
                 controller: 'InfoCtrl'
             })
-            .otherwise({
-                redirectTo: '/'
-            });
+
+            .state('info.userlist', {
+                url: '/userlist',
+                templateUrl: 'views/info/userlist.html',
+                controller: 'InfoUserListCtrl'
+            })
+            // .otherwise({
+            //     redirectTo: 'index'
+            // });
+
+        $stateProvider.state('welcome', {
+            template: "welcome"
+        })
 
 
     }).run(function() {
