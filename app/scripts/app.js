@@ -24,34 +24,27 @@ angular
 
         $stateProvider
             .state('index', {
-                url: '/index',
+                url: '',
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl'
             })
             .state('usermanagement', {
-                url:'/usermanagement',
+                url: '/usermanagement',
                 templateUrl: 'views/usermanagement.html',
                 controller: 'UserManageMementCtrl'
             })
-
             .state('info', {
                 url: '/info',
                 templateUrl: 'views/info.html',
                 controller: 'InfoCtrl'
             })
-
             .state('info.userlist', {
                 url: '/userlist',
                 templateUrl: 'views/info/userlist.html',
                 controller: 'InfoUserListCtrl'
+            }).state('welcome', {
+                template: "welcome"
             })
-            // .otherwise({
-            //     redirectTo: 'index'
-            // });
-
-        $stateProvider.state('welcome', {
-            template: "welcome"
-        })
 
 
     }).run(function() {

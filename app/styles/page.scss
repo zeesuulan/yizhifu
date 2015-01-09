@@ -1,85 +1,77 @@
 @import 'main.scss';
 
 #viewbox {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 #login {
-    width: 100%;
-    height: 100%;
-    background: url(../images/bg.jpg) 0 0 repeat-x;
+	width: 100%;
+	height: 100%;
+	background: url(../images/bg.jpg) 0 0 repeat-x;
 }
 #divlogin {
-    height: 716px;
-    width: 1024px;
-    overflow: hidden;
-    margin: 0 auto;
-    background: url(../images/bg_login.jpg) no-repeat scroll 50% 50% transparent;
+	height: 716px;
+	width: 1024px;
+	overflow: hidden;
+	margin: 0 auto;
+	background: url(../images/bg_login.jpg) no-repeat scroll 50% 50% transparent;
 }
 .mod_login_in {
-    width: 330px;
-    height: 173px;
-    padding: 70px 0 0 70px;
-    float: left;
-    margin: 208px 0 0 287px;
-
-    .mod_login_pwd, .mod_login_user{
-        width: 240px;
-        height: auto;
-        padding: 6px 10px;
-        border: 0 none;
-        line-height: normal;
-        color: #999;
-        font-size: 12px;
-    }
+	width: 330px;
+	height: 173px;
+	padding: 70px 0 0 70px;
+	float: left;
+	margin: 208px 0 0 287px;
+	.mod_login_pwd,
+	.mod_login_user {
+		width: 240px;
+		height: auto;
+		padding: 6px 10px;
+		border: 0 none;
+		line-height: normal;
+		color: #999;
+		font-size: 12px;
+	}
 }
 
-/*global*/
+/* global */
 #header {
 	width: 100%;
 	background: url(../images/bg_top01.png) 0 0 repeat-x;
-	
-	#topOpration{
+	#topOpration {
 		width: 220px;
 		height: 35px;
 		float: right;
 		padding: 0;
 		margin-top: 15px;
-		li{
+		li {
 			width: 35px;
 			height: 35px;
 			margin-right: 16px;
 			display: inline-block;
 			cursor: pointer;
-
-			&:hover{
+			&:hover {
 				@include transform(scale(1.2));
 			}
-
-			&:active{
+			&:active {
 				@include transform(scale(.9));
 			}
-	
-			&.reloadBtn{
+			&.reloadBtn {
 				background: url(../images/reload.png) 0 0 no-repeat;
 			}
-
-			&.backBtn{
+			&.backBtn {
 				background: url(../images/back.png) 0 0 no-repeat;
 			}
-
-			&.forwardBtn{
+			&.forwardBtn {
 				background: url(../images/forward.png) 0 0 no-repeat;
 			}
-
-			&.logoutBtn{
+			&.logoutBtn {
 				background: url(../images/logout.png) 0 0 no-repeat;
 			}
 		}
 	}
 }
-
-#subnav{
+#subnav {
 	height: 27px;
 	line-height: 27px;
 	background: url(../images/bg_top02.png) 0 0 repeat-x;
@@ -87,52 +79,48 @@
 	color: #fff;
 	font-size: 14px;
 	min-width: 800px;
-
-	span{
+	span {
 		margin-right: 20px;
 	}
 }
-
-#content{
+#content {
 	width: 100%;
 	min-height: 100%;
-	#menu{
+	#menu {
 		width: 197px;
 		padding: 0 2px;
 		background-color: white;
-
-		li{
+		li {
 			cursor: pointer;
 			font-size: 18px;
 			line-height: 38px;
-			
 			&.navbtn {
 				background: #b2d5f5 url(../images/navbtn.png) no-repeat;
 				color: #fff;
 				padding-left: 42px;
 				height: 43px;
 			}
-
-			&.subnavbtn{
+			&.subnavbtn {
 				padding-left: 42px;
 				color: #109bd2;
 				background: url(../images/navsubbtn.png) repeat-x;
 				height: 43px;
 			}
-
-			a{
+			a {
 				text-decoration: none;
+				display: block;
+				width: 100%;
+				height: 100%;
 			}
 		}
 	}
 }
-
-#province-box{
+#province-box {
 	text-align: left;
 	margin-left: 193px;
 	width: 300px;
 	float: left;
-	select{
+	select {
 		display: inline-block;
 		width: 100px;
 		height: 20px;
@@ -151,34 +139,3 @@
 		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

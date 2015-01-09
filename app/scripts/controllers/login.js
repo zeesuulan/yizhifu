@@ -9,7 +9,6 @@
  */
 angular.module('yizhifuApp')
 	.controller('LoginCtrl', function($scope, $location) {
-
 		$scope.login = function(){
 
 			console.log($scope.username, $scope.password)
