@@ -8,12 +8,19 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-	.controller('LoginCtrl', function($scope, $location) {
-		$scope.login = function(){
+	.controller('LoginCtrl', function($scope, $location, yService) {
 
-			console.log($scope.username, $scope.password)
-
-
-			$location.url("/info")
+		$scope.login = function() {
+			yService.login({
+				username: $scope.username,
+				password: $scope.password
+			}).then(function(data) {
+				if (data.data.result == 0) {
+					$location.url("/info")
+				} else {
+					alert(ERR_MSG[data.data.result])
+				}
+			})
 		}
+
 	});

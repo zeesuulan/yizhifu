@@ -77,6 +77,19 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
+              require('json-proxy').initialize({
+                proxy: {
+                  forward: {
+                    '/api': 'https://112.124.45.47:9910/'
+                  },
+                  headers: {
+                    'Host': 'https://112.124.45.47:9910/',
+                    'Origin': 'https://112.124.45.47:9910/',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                  }
+                }
+              }),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',

@@ -1,5 +1,4 @@
 @import 'main.scss';
-
 #viewbox {
 	width: 100%;
 	height: 100%;
@@ -22,8 +21,7 @@
 	padding: 70px 0 0 70px;
 	float: left;
 	margin: 208px 0 0 287px;
-	.mod_login_pwd,
-	.mod_login_user {
+	.mod_login_pwd, .mod_login_user {
 		width: 240px;
 		height: auto;
 		padding: 6px 10px;
@@ -37,6 +35,7 @@
 /* global */
 #header {
 	width: 100%;
+	min-width: 800px;
 	background: url(../images/bg_top01.png) 0 0 repeat-x;
 	#topOpration {
 		width: 220px;
@@ -73,12 +72,14 @@
 }
 #subnav {
 	height: 27px;
+	width: 100%;
+	min-width: 800px;
 	line-height: 27px;
 	background: url(../images/bg_top02.png) 0 0 repeat-x;
 	text-align: right;
 	color: #fff;
 	font-size: 14px;
-	min-width: 800px;
+	overflow: hidden;
 	span {
 		margin-right: 20px;
 	}
@@ -86,10 +87,15 @@
 #content {
 	width: 100%;
 	min-height: 100%;
+	overflow: hidden;
 	#menu {
 		width: 197px;
 		padding: 0 2px;
 		background-color: white;
+		position: absolute;
+		bottom: 0;
+		top: 87px;
+		left: 0;
 		li {
 			cursor: pointer;
 			font-size: 18px;
@@ -114,6 +120,16 @@
 			}
 		}
 	}
+}
+#sub-content {
+	text-align: left;
+	overflow: scroll;
+	background-color: white;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 197px;
+	top: 86px;
 }
 #province-box {
 	text-align: left;
