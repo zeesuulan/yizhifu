@@ -80,13 +80,13 @@ module.exports = function (grunt) {
               require('json-proxy').initialize({
                 proxy: {
                   forward: {
-                    '/api': 'https://112.124.45.47:9910/'
+                    '/api/': 'https://112.124.45.47:9910/'
                   },
                   headers: {
                     'Host': 'https://112.124.45.47:9910/',
                     'Origin': 'https://112.124.45.47:9910/',
                     'X-Requested-With': 'XMLHttpRequest',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
                   }
                 }
               }),
@@ -262,7 +262,7 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         files: {
-          '<%= yeoman.dist %>/styles/main.css': [
+          '<%= yeoman.dist %>/styles/page.css': [
             '.tmp/styles/{,*/}*.css'
           ]
         }

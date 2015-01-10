@@ -10,6 +10,9 @@
 angular.module('yizhifuApp')
 	.factory('yService', function($http) {
 
+        $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
+
+
 		var postFun = function(data, apiName) {
 			return $http.post('/api/' + apiName, data)
 		}

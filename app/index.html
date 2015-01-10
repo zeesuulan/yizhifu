@@ -1,15 +1,28 @@
 <!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js">
-  <head>
+<!--<![endif]-->
+
+<head>
     <meta charset="utf-8">
     <title>翼支付结算系统</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/page.css -->
     <link rel="stylesheet" href="styles/page.css">
-  </head>
-  <body ng-app="yizhifuApp">
-      <div ui-view id="viewbox"></div>
+    <!-- endbuild -->
+</head>
+
+<body ng-app="yizhifuApp">
+    <div ui-view id="viewbox"></div>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -30,16 +43,17 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/service/yp.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/usermanagement.js"></script>
-        <script src="scripts/controllers/info.js"></script>
-        <script src="scripts/controllers/info.userlist.js"></script>
-        <script src="scripts/directives/header.js"></script>
-        <script src="scripts/directives/menu.js"></script>
-        <script src="scripts/directives/subnav.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/service/yp.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/usermanagement.js"></script>
+    <script src="scripts/controllers/info.js"></script>
+    <script src="scripts/controllers/info.userlist.js"></script>
+    <script src="scripts/directives/header.js"></script>
+    <script src="scripts/directives/menu.js"></script>
+    <script src="scripts/directives/subnav.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>
