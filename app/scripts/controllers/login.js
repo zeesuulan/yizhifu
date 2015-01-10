@@ -11,6 +11,12 @@ angular.module('yizhifuApp')
 	.controller('LoginCtrl', function($scope, $location, yService) {
 
 		$scope.login = function() {
+
+			if (!$scope.username || !$scope.password) {
+				alert("用户名或密码不为空！")
+				return
+			}
+
 			yService.login({
 				username: $scope.username,
 				password: $scope.password
@@ -21,6 +27,7 @@ angular.module('yizhifuApp')
 					alert(ERR_MSG[data.data.result])
 				}
 			})
+
 		}
 
 	});
