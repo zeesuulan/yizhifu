@@ -1,8 +1,13 @@
 <div>
-	<div id="table-up">
-		<label class="control-label">按用户名筛选：</label>
-		<input type="text" class="form-control" ng-model="usernameQuery" ng-change="updateFilterPeopleList()" />
-	</div>
+    <div id="table-up">
+        <label class="control-label">按用户名筛选：</label>
+        <input type="text" ng-model="usernameQuery" ng-change="updateFilterPeopleList()" />
+        <select>
+        	<option>选择角色</option>
+        	<option>全国结算专员</option>
+        	<option>省结算专员</option>
+        </select>
+    </div>
     <table at-table at-list="fileterPeopleList" at-config="config" at-paginated class="table table-striped">
         <thead></thead>
         <tbody>
