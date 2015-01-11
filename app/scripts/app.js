@@ -5,6 +5,7 @@ window.ERR_MSG = [
     "提交内容错误！",
     "用户不存在！",
     "用户已存在！",
+    "已登录",
     "密码错误！",
     "目标账户不存在！",
     "缺少原密码！",
@@ -38,11 +39,11 @@ angular
         'ngTouch',
         'ui.router'
     ])
-    .config(function($stateProvider, $httpProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
         $stateProvider
             .state('index', {
-                url: '',
+                url: '/',
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl'
             })
@@ -87,7 +88,7 @@ angular
                 controller: 'InfoLogqueryCtrl'
             })
 
-
+            $urlRouterProvider.otherwise('/')
 
         var param = function(obj) {
             var query = '',
@@ -128,11 +129,12 @@ angular
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             yService.assert().then(function(data) {
                 $rootScope.profile = data.data.profile
-                // if (toState.url != '' && data.data.result != 0) { //非首页 未登录
-                //     $state.go('index')
-                // } else if (toState.url == "" && data.data.result == 0) {
-                //     $state.go('info')
-                // }
+
+                if ($state.is('index') && data.data.result != 0) { //非首页 未登录
+                    $state.go('index')
+                } else if ($state.is('index') && data.data.result == 0) {
+                    $state.go('info')
+                }
             })
 
         })

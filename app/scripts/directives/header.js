@@ -8,19 +8,20 @@
  */
 
 angular.module('yizhifuApp')
-	.directive('yHeader', function() {
+	.directive('yHeader', function($state, yService) {
 		return {
 			templateUrl: 'views/part/header.html',
 			restrict: 'A',
 			replace: true,
 			link: function(scope, element, attrs) {
-
+console.log($state)
 				scope.reload = function() {
-					window.location.reload()
+					$state.reload()
 				}
 
 				scope.back = function() {
 					window.history.back()
+					// $state.transitionTo(-1)
 				}
 
 				scope.forward = function() {
@@ -28,7 +29,13 @@ angular.module('yizhifuApp')
 				}
 
 				scope.logout = function() {
-					console.log('sevice logout')
+					yService.logout().then(function(data) {
+						if (data.data.result == 0) {
+							$state.go("index")
+						} else {
+							alert(ERR_MSG[data.data.result])
+						}
+					})
 				}
 			}
 		};

@@ -21,6 +21,9 @@ angular.module('yizhifuApp')
 			login: function(data) {
 				return postFun(data, 'login')
 			},
+			logout: function(){
+				return postFun({}, 'logout')
+			},
 			assert: function() {
 				return postFun({}, 'assert')
 			}

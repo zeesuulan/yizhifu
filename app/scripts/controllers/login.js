@@ -8,7 +8,7 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-	.controller('LoginCtrl', function($scope, $location, yService) {
+	.controller('LoginCtrl', function($scope, $state, yService) {
 
 		$scope.login = function() {
 
@@ -21,10 +21,11 @@ angular.module('yizhifuApp')
 				username: $scope.username,
 				password: $scope.password
 			}).then(function(data) {
-				return;
+				window.history = []
+				console.log(window.history)
 				if (data.data.result == 0) {
 					//保存用户信息
-					$location.url("/info")
+					$state.go("info")
 				} else {
 					alert(ERR_MSG[data.data.result])
 				}

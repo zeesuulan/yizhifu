@@ -3,27 +3,27 @@
         <li ng-click="open('userManagement')" class="navbtn">用户管理</li>
         <li ng-show="isShowUserManagement">
             <ul>
-                <li class="subnavbtn"><a ng-href="#/info/userlist">用户列表</a>
+                <li class="subnavbtn"><a ui-sref="info.userlist">用户列表</a>
                 </li>
-                <li class="subnavbtn"><a href="#/info/modifyinfo">修改信息</a>
+                <li class="subnavbtn"><a ui-sref="info.modifyinfo">修改信息</a>
                 </li>
-                <li class="subnavbtn"><a href="#/info/modifypwd">修改密码</a>
+                <li class="subnavbtn"><a ui-sref="info.modifypwd">修改密码</a>
                 </li>
             </ul>
         </li>
         <li ng-click="open('settleManagement')" class="navbtn">结算管理</li>
         <li ng-show="isShowSettleManagement">
             <ul>
-                <li class="subnavbtn"><a href="#/info/settlement">商户结算</a>
+                <li class="subnavbtn"><a ui-sref="info.settlement">商户结算</a>
                 </li>
-                <li class="subnavbtn"><a href="#/info/ledgerquery">总账查询</a>
+                <li class="subnavbtn"><a ui-sref="info.ledgerquery">总账查询</a>
                 </li>
             </ul>
         </li>
         <li ng-click="open('logQuery')" class="navbtn">日志查询</li>
         <li ng-show="isShowLogQuery">
             <ul>
-                <li class="subnavbtn"><a href="#/info/logquery">结算日志</a>
+                <li class="subnavbtn"><a ui-sref="info.logquery">结算日志</a>
                 </li>
             </ul>
         </li>
