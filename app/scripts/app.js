@@ -47,42 +47,42 @@ angular
                 controller: 'LoginCtrl'
             })
             .state('info', {
-                url: '/info',
+                url: '/info/',
                 templateUrl: 'views/info.html',
                 controller: 'InfoCtrl'
             })
             //=============用户管理
             .state('info.userlist', {
-                url: '/userlist',
+                url: 'userlist',
                 templateUrl: 'views/info/userlist.html',
                 controller: 'InfoUserListCtrl'
             })
             .state('info.modifypwd', {
-                url: '/modifypwd',
+                url: 'modifypwd',
                 templateUrl: 'views/info/modifypwd.html',
                 controller: 'InfoModifypwdCtrl'
             })
             .state('info.modifyinfo', {
-                url: '/modifyinfo',
+                url: 'modifyinfo',
                 templateUrl: 'views/info/modifyinfo.html',
                 controller: 'InfoModifyinfoCtrl'
             })
             //=============用户管理
             //=============商户管理
             .state('info.settlement', {
-                url: '/settlement',
+                url: 'settlement',
                 templateUrl: 'views/info/settlement.html',
                 controller: 'InfoSettlementCtrl'
             })
             .state('info.ledgerquery', {
-                url: '/ledgerquery',
+                url: 'ledgerquery',
                 templateUrl: 'views/info/ledgerquery.html',
                 controller: 'InfoLedgerqueryCtrl'
             })
             //=============商户管理
             //=============日志管理
             .state('info.logquery', {
-                url: '/logquery',
+                url: 'logquery',
                 templateUrl: 'views/info/logquery.html',
                 controller: 'InfoLogqueryCtrl'
             })

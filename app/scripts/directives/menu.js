@@ -17,15 +17,22 @@ angular.module('yizhifuApp')
 
 				scope.isShowUserManagement = false
 				scope.isShowSettleManagement = false
+				scope.isShowLogQuery = false
 
 				var toggle = {
 					"userManagement": function() {
 						scope.isShowUserManagement = !scope.isShowUserManagement
+						scope.isShowSettleManagement = false
+						scope.isShowLogQuery = false
 					},
 					"settleManagement": function() {
+						scope.isShowUserManagement = false
 						scope.isShowSettleManagement = !scope.isShowSettleManagement
+						scope.isShowLogQuery = false
 					},
 					"logQuery": function() {
+						scope.isShowUserManagement = false
+						scope.isShowSettleManagement = false
 						scope.isShowLogQuery = !scope.isShowLogQuery
 					}
 				}

@@ -130,7 +130,9 @@
 	right: 0;
 	left: 197px;
 	top: 86px;
-	padding: 0 10px;
+	>div{
+		padding: 0 10px;
+	}
 }
 #province-box {
 	text-align: left;
