@@ -21,7 +21,9 @@ angular.module('yizhifuApp')
 				username: $scope.username,
 				password: $scope.password
 			}).then(function(data) {
+				return;
 				if (data.data.result == 0) {
+					//保存用户信息
 					$location.url("/info")
 				} else {
 					alert(ERR_MSG[data.data.result])

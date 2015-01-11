@@ -6,7 +6,7 @@
 			<option value="北京">北京</option>
 		</select>
 	</div>
-    <span>所属区域：{{location}}</span>
-    <span>登录者：{{username}}({{role}})</span>
+    <span>所属区域：{{profile.location}}</span>
+    <span>登录者：{{profile.nickname}}({{profile.role}})</span>
     <span>当前日期：{{datetime | date: "yyyy年MM月dd日"}}</span>
 </div>

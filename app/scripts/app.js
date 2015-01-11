@@ -33,7 +33,7 @@ angular
         'ngCookies',
         'ngMessages',
         'ngResource',
-        // 'ngRoute',
+        'angular-table',
         'ngSanitize',
         'ngTouch',
         'ui.router'
@@ -46,11 +46,6 @@ angular
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl'
             })
-            .state('usermanagement', {
-                url: '/usermanagement',
-                templateUrl: 'views/usermanagement.html',
-                controller: 'UserManageMementCtrl'
-            })
             .state('info', {
                 url: '/info',
                 templateUrl: 'views/info.html',
@@ -59,6 +54,16 @@ angular
             .state('info.userlist', {
                 url: '/userlist',
                 templateUrl: 'views/info/userlist.html',
+                controller: 'InfoUserListCtrl'
+            })
+            .state('info.modifypwd', {
+                url: '/modifypwd',
+                templateUrl: 'views/info/modifypwd.html',
+                controller: 'InfoUserListCtrl'
+            })
+            .state('info.modifyinfo', {
+                url: '/modifyinfo',
+                templateUrl: 'views/info/modifyinfo.html',
                 controller: 'InfoUserListCtrl'
             })
 
@@ -98,16 +103,16 @@ angular
             return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
         }];
 
-    }).run(function($location, $rootScope, yService) {
+    }).run(function($state, $rootScope, yService) {
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             yService.assert().then(function(data) {
-
-                if (toState.url != '' && data.data.result != 0) { //非首页 未登录
-                    $location.url('')
-                } else if (toState.url == "" && data.data.result == 0) {
-                    $location.url('/info')
-                }
+                $rootScope.profile = data.data.profile
+                // if (toState.url != '' && data.data.result != 0) { //非首页 未登录
+                //     $state.go('index')
+                // } else if (toState.url == "" && data.data.result == 0) {
+                //     $state.go('info')
+                // }
             })
 
         })
