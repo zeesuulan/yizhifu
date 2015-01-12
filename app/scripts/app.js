@@ -44,7 +44,8 @@ angular
         'angular-table',
         'ngSanitize',
         'ngTouch',
-        'ui.router'
+        'ui.router',
+        'ui.bootstrap.datetimepicker'
     ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
