@@ -3,15 +3,16 @@
     <div id="table-up">
         <div class="dpbox col-sm-3">
             选择开始时间：
+            <!-- 不能选择，默认为第一个时间 -->
             <div class="dropdown">
                 <a class="dropdown-toggle my-toggle-select-start" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                     <div class="input-append input-group">
                         <input type="text" class="form-control" value="{{data.startdate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+               <!--  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                     <datetimepicker data-ng-model="data.startdate" data-datetimepicker-config="{{dpconfig_start}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
-                </ul>
+                </ul> -->
             </div>
         </div>
         <div class="dpbox col-sm-3">
@@ -45,6 +46,7 @@
         </tbody>
     </table>
     <at-pagination at-config="config" at-list="filtedMerchantDetailList"></at-pagination>
+    <!-- 需要提供一个界面输入密码 -->
     <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="settlement()"></button>
     <a ui-sref="info.settlement" class="btn btn-info">返回上一级</a>
 </div>

@@ -137,7 +137,11 @@ angular
             return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
         }];
 
+        moment.locale("zh-cn")
+
     }).run(function($state, $rootScope, yService) {
+
+        
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             yService.assert().then(function(data) {
