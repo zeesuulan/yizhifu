@@ -15,6 +15,8 @@ angular.module('yizhifuApp')
 
 		var postFun = function(data, apiName) {
 			return $http.post('/api/' + apiName, data)
+		}, getFun = function(data, apiName) {
+			return $http.get('/api/' + apiName, data)
 		}
 
 		return {
@@ -26,6 +28,9 @@ angular.module('yizhifuApp')
 			},
 			assert: function() {
 				return postFun({}, 'assert')
+			},
+			getUserList: function(){
+				return getFun({}, 'userList')
 			}
 		}
 	})

@@ -8,29 +8,25 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-	.controller('InfoUserListCtrl', function($scope, $filter) {
+	.controller('InfoUserListCtrl', function($scope, $filter, yService) {
 
 		$scope.config = {
-			itemsPerPage: 5
+			itemsPerPage: 20
 		}
 
-		$scope.people = [{
-			'username': "dd",
-			'nickname': "ddddddd",
-			'id': 17,
-			"area": 1
-		}, {
-			'username': "ss",
-			'nickname': "ssssssa",
-			'id': 16,
-			"area": 2
-		}]
+		$scope.people = []
+		$scope.filtedPeopleList = []
 
-
-		$scope.filtedPeopleList = $scope.people
+		yService.getUserList().then(function(data){
+			if(data.data.result == 0) {
+				$scope.people = data.data.users
+				$scope.filtedPeopleList = $scope.people
+				console.log($scope.people)
+			}
+		})
 
 		$scope.updateFilterPeopleList = function() {
-			$scope.filtedPeopleList = $filter("filter")($scope.people, $scope.usernameQuery)
+			$scope.filtedPeopleList = $filter("byKeyMatch")("username", $scope.usernameQuery, $scope.people)
 		}
 
 		$scope.modify = function(id){

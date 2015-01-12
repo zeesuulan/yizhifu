@@ -159,4 +159,14 @@ angular
         return function(roleIndex) {
             return ROLE[roleIndex]
         }
+    }).filter("byKeyMatch", function(){
+        return function(keystr, matchstr, list) {
+            var result = []
+            angular.forEach(list, function(v, k){
+                if(v[keystr].indexOf(matchstr) >= 0) {
+                    this.push(v)
+                }
+            }, result)
+            return result
+        }
     })
