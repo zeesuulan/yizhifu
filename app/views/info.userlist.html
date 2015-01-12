@@ -7,6 +7,7 @@
         	<option>全国结算专员</option>
         	<option>省结算专员</option>
         </select>
+        <button class="btn btn-primary">新增用户</button>
     </div>
     <table at-table at-list="filtedPeopleList" at-config="config" at-paginated class="table table-striped">
         <thead></thead>
@@ -18,7 +19,7 @@
                     <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="modify(item.id)"></button>
                 </td>
                 <td at-title="删除">
-                    <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="remove(item.id, item.nickname)"></button>
+                    <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="remove(item)"></button>
                 </td>
                 <td at-implicit at-title="姓名" at-attribute="nickname"></td>
                 <td at-title="所属角色">{{item.role}}</td>

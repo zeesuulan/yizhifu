@@ -31,6 +31,9 @@ angular.module('yizhifuApp')
 			},
 			getUserList: function(){
 				return getFun({}, 'userList')
+			},
+			userCRUD: function(data){
+				return getFun(data, 'userCRUD')
 			}
 		}
 	})
