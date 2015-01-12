@@ -14,7 +14,7 @@ angular.module('yizhifuApp')
 			restrict: 'A',
 			replace: true,
 			link: function(scope, element, attrs) {
-console.log($state)
+
 				scope.reload = function() {
 					$state.reload()
 				}

@@ -1,0 +1,25 @@
+<!-- 二级订单ID、消费码、订单内容、商品属性、订单生成时间、订单销码时间、客户手机号。 -->
+<div>
+    <div id="table-up">
+
+    </div>
+    <table at-table at-list="filtedMerchantDetailList" at-config="config" at-paginated class="table table-striped">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td at-implicit at-title="二级订单ID" at-attribute="id"></td>
+                <td at-implicit at-title="消费码" at-attribute="name"></td>
+                <td at-implicit at-title="订单内容" at-attribute="city"></td>
+                <td at-implicit at-title="商品属性" at-attribute="county"></td>
+                <td at-implicit at-title="订单生成时间" at-attribute="zone"></td>
+                <td at-implicit at-title="订单销码时间" at-attribute="first"></td>
+                <td at-implicit at-title="客户手机号" at-attribute="second"></td>
+                <td at-title="结算">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <at-pagination at-config="config" at-list="filtedMerchantDetailList"></at-pagination>
+    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="settlement()"></button>
+    <a ui-sref="info.settlement" class="btn btn-info">返回上一级</a>
+</div>

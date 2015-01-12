@@ -52,6 +52,12 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      html: {
+        files: ['<%= yeoman.app %>/views/{,*/}*.html'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'

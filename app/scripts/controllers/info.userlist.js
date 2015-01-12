@@ -27,10 +27,10 @@ angular.module('yizhifuApp')
 		}]
 
 
-		$scope.fileterPeopleList = $scope.people
+		$scope.filtedPeopleList = $scope.people
 
 		$scope.updateFilterPeopleList = function() {
-			$scope.fileterPeopleList = $filter("filter")($scope.people, $scope.usernameQuery)
+			$scope.filtedPeopleList = $filter("filter")($scope.people, $scope.usernameQuery)
 		}
 
 		$scope.modify = function(id){

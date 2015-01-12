@@ -1,0 +1,52 @@
+<div>
+    <!-- 城市、区县、商圈、一级行业、二级行业、名称 -->
+    <div id="table-up">
+        <label class="control-label">按商户名称筛选：</label>
+        <input type="text" ng-model="merchantQuery.name" ng-change="updateFiltedMerchantList('name')" />
+        <select ng-change="updateFiltedMerchantList('city')" ng-model="merchantQuery.city">
+            <option value="">城市</option>
+            <option>全国结算专员</option>
+            <option>省结算专员</option>
+        </select>
+        <select ng-model="merchantCountyQuery.county" ng-change="updateFiltedMerchantList('county')">
+            <option value="">区县</option>
+            <option>全国结算专员</option>
+            <option>省结算专员</option>
+        </select>
+        <select ng-model="merchantQuery.zone" ng-change="updateFiltedMerchantList('zone')">
+            <option value="">商圈</option>
+            <option>全国结算专员</option>
+            <option>省结算专员</option>
+        </select>
+        <select ng-model="merchantQuery.first" ng-change="updateFiltedMerchantList('first')">
+            <option value="">一级行业</option>
+            <option>全国结算专员</option>
+            <option>省结算专员</option>
+        </select>
+        <select ng-model="merchantQuery.second" ng-change="updateFiltedMerchantList('county')">
+            <option value="">二级行业</option>
+            <option>全国结算专员</option>
+            <option>省结算专员</option>
+        </select>
+    </div>
+    <!-- 商户ID、商户名称、所属市、所属区县、所属商圈、一级行业、二级行业、商户地址、结算 -->
+    <table at-table at-list="filtedMerchantList" at-config="config" at-paginated class="table table-striped">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td at-implicit at-title="商户ID" at-attribute="id"></td>
+                <td at-implicit at-title="商户名称" at-attribute="name"></td>
+                <td at-implicit at-title="所属市" at-attribute="city"></td>
+                <td at-implicit at-title="所属区县" at-attribute="county"></td>
+                <td at-implicit at-title="所属商圈" at-attribute="zone"></td>
+                <td at-implicit at-title="一级行业" at-attribute="first"></td>
+                <td at-implicit at-title="二级行业" at-attribute="second"></td>
+                <td at-implicit at-title="商户地址" at-attribute="address"></td>
+                <td at-title="结算">
+                    <a ui-sref="info.settlementDetail({merchantid:item.id})" class="btn btn-primary glyphicon glyphicon-pencil" ></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <at-pagination at-config="config" at-list="filtedMerchantList"></at-pagination>
+</div>
