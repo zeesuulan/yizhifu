@@ -1,16 +1,23 @@
 'use strict';
 
 angular.module('yizhifuApp')
-  .controller('InfoSettlementDetailCtrl', function ($scope, $stateParams) {
-  	
-   		// console.log($scope.merchantid)
+	.controller('InfoSettlementDetailCtrl', function($scope, $filter, $stateParams) {
 
-   		$scope.dpconfig = {
-   			dropdownSelector: '.my-toggle-select',
-   			startView: 'year',
-   			minView: 'day'
+		// console.log($scope.merchantid)
 
-   		}
+		$scope.dpconfig_start = $scope.dpconfig_end = {
+			dropdownSelector: '.my-toggle-select-start',
+			startView: 'year',
+			minView: 'day'
+		}
 
-   		$scope.filtedMerchantDetailList = []
-  });
+		$scope.dpconfig_end.dropdownSelector = '.my-toggle-select-end'
+
+		$scope.onTimeSet = function(newDate, oldDate) {
+			if (newDate != oldDate) {
+				console.log($filter('date')(newDate), oldDate)
+			}
+		}
+
+		$scope.filtedMerchantDetailList = []
+	});

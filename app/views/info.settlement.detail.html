@@ -4,26 +4,26 @@
         <div class="dpbox col-sm-3">
             选择开始时间：
             <div class="dropdown">
-                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                <a class="dropdown-toggle my-toggle-select-start" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                     <div class="input-append input-group">
-                        <input type="text" class="form-control" data-ng-model="data.startdate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" value="{{data.startdate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="data.startdate" data-datetimepicker-config="{{dpconfig}}"></datetimepicker>
+                    <datetimepicker data-ng-model="data.startdate" data-datetimepicker-config="{{dpconfig_start}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
                 </ul>
             </div>
         </div>
         <div class="dpbox col-sm-3">
-	        选择结束时间：
+            选择结束时间：
             <div class="dropdown">
-                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                <a class="dropdown-toggle my-toggle-select-end" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                     <div class="input-append input-group">
-                        <input type="text" class="form-control" data-ng-model="data.enddate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" value="{{data.enddate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="data.enddate" data-datetimepicker-config="{{dpconfig}}"></datetimepicker>
+                    <datetimepicker data-ng-model="data.enddate" data-datetimepicker-config="{{dpconfig_end}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
                 </ul>
             </div>
         </div>
