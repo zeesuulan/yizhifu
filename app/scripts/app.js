@@ -141,11 +141,14 @@ angular
 
     }).run(function($state, $rootScope, yService) {
 
-        
+        $rootScope.profile = {}
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             yService.assert().then(function(data) {
+                
                 $rootScope.profile = data.data.profile
+                //告诉要用值的地方，值ok了。
+                $rootScope.$broadcast("$profileReady")
 
                 // if (!$state.is('index') && data.data.result != 0) { //非首页 未登录
                 //     $state.go('index')

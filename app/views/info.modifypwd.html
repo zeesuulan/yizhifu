@@ -4,21 +4,23 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">原始密码：</label>
             <div class="col-sm-3">
-                <input type="password" ng-model="oldpasswd" class="form-control"/>
+                <input type="password" ng-model="oldpwd" class="form-control"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">新密码：</label>
             <div class="col-sm-3">
-                <input type="password" ng-model="newpasswd" class="form-control"/>
+                <input type="password" ng-model="newpwd" class="form-control"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">重复新的密码：</label>
             <div class="col-sm-3">
-                <input type="password" ng-model="newpasswd_confirm" class="form-control"/>
+                <input type="password" ng-model="newpwd_confirm" class="form-control"/>
             </div>
+            <span class="c_icon glyphicon glyphicon-ok" ng-show="newpwd && newpwd == newpwd_confirm"></span>
+            <span class="e_icon glyphicon glyphicon-remove" ng-show="newpwd && newpwd != newpwd_confirm"></span>
         </div>
-        <button class="btn btn-info col-sm-offset-2" ng-click="">确定</button>
+        <button class="btn btn-info col-sm-offset-2" ng-click="modifyPwdClick()">确定</button>
     </form>
 </div>

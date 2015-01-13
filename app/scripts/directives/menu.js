@@ -14,7 +14,6 @@ angular.module('yizhifuApp')
 			replace: true,
 			link: function postLink(scope, element, attrs) {
 
-
 				scope.isShowUserManagement = false
 				scope.isShowSettleManagement = false
 				scope.isShowLogQuery = false
