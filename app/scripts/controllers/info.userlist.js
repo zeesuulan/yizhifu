@@ -16,10 +16,10 @@ angular.module('yizhifuApp')
 
 		$scope.people = []
 		$scope.filtedPeopleList = []
+		$scope.modifyItem = {}
+		$scope.addItem = {}
 
 		_getList()
-
-
 
 
 
@@ -28,10 +28,20 @@ angular.module('yizhifuApp')
 			$scope.filtedPeopleList = $filter("byKeyMatch")("username", $scope.usernameQuery, $scope.people)
 		}
 
-		$scope.modify = function(id) {
-			console.log("modify: " + id)
+		//===========修改用户信息
+		$scope.modify = function(item) {
+			$scope.modifyItem = {
+				nickname: item.nickname,
+				username: item.username,
+				userID: item.userId
+			}
 		}
 
+		$scope.saveModify = function() {
+			console.log($scope.modifyItem)
+		}
+
+		//===========移除用户
 		$scope.remove = function(user) {
 			if (window.confirm("确定删除用户: '" + user.nickname + "' 吗？")) {
 				yService.userCRUD({
@@ -43,10 +53,25 @@ angular.module('yizhifuApp')
 			}
 		}
 
+		//===========新增用户
+		$scope.clearAdd = function(){
+			$scope.addItem = {}
+		}
+
+		$scope.saveAdd = function(){
+			console.log($scope.addItem)
+
+			$scope.addItem = {}
+		}
+
+
+		//===========重置用户密码
 		$scope.resetPsw = function(id) {
 			console.log("resetPsw: " + id + " success")
 		}
 
+
+		//===========获取用户列表
 		function _getList() {
 			yService.getUserList().then(function(data) {
 				if (data.data.result == 0) {
@@ -55,7 +80,5 @@ angular.module('yizhifuApp')
 				}
 			})
 		}
-
-
 
 	});

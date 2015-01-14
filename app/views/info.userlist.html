@@ -3,11 +3,11 @@
         <label class="control-label">按用户名筛选：</label>
         <input type="text" ng-model="usernameQuery" ng-change="updateFilterPeopleList()" />
         <select>
-        	<option>选择角色</option>
-        	<option>全国结算专员</option>
-        	<option>省结算专员</option>
+            <option>选择角色</option>
+            <option>全国结算专员</option>
+            <option>省结算专员</option>
         </select>
-        <button class="btn btn-primary">新增用户</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">新增用户</button>
     </div>
     <table at-table at-list="filtedPeopleList" at-config="config" at-paginated class="table table-striped">
         <thead></thead>
@@ -16,7 +16,7 @@
                 <td at-implicit at-title="用户ID" at-attribute="userId"></td>
                 <td at-implicit at-title="用户名" at-attribute="username"></td>
                 <td at-title="修改">
-                    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="modify(item.userId)"></button>
+                    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="modify(item)" data-toggle="modal" data-target="#modifyModal"></button>
                 </td>
                 <td at-title="删除">
                     <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="remove(item)"></button>
@@ -31,4 +31,98 @@
         </tbody>
     </table>
     <at-pagination at-config="config" at-list="filtedPeopleList"></at-pagination>
+
+    <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">修改用户信息</h4>
+                </div>
+                <div class="modal-body form form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户名：</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="modifyItem.username" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户姓名：</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="modifyItem.nickname" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">密码：</label>
+                        <div class="col-sm-5">
+                            <input type="password" ng-model="modifyItem.passwd" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveModify()">保存修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">新增用户</h4>
+                </div>
+                <div class="modal-body form form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户名：</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="addItem.username" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户姓名：</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="addItem.nickname" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">密码：</label>
+                        <div class="col-sm-5">
+                            <input type="password" ng-model="addItem.passwd" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所属省份：</label>
+                        <div class="col-sm-5">
+                            <select ng-model="addItem.province">
+                                <option value="0">超级管理员</option>
+                                <option value="1">全国结算员</option>
+                                <option value="2">省结算员</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">角色：</label>
+                        <div class="col-sm-5">
+                            <select ng-model="addItem.role">
+                                <option value="0">超级管理员</option>
+                                <option value="1">全国结算员</option>
+                                <option value="2">省结算员</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearAdd()">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveAdd()">新增</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

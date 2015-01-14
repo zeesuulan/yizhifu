@@ -145,7 +145,7 @@ angular
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             yService.assert().then(function(data) {
-                
+
                 $rootScope.profile = data.data.profile
                 //告诉要用值的地方，值ok了。
                 $rootScope.$broadcast("$profileReady")
@@ -157,6 +157,15 @@ angular
                 // }
             })
 
+        })
+
+        //获取全部省份
+        yService.getProvinceList().then(function(data){
+            console.log(data)
+        })
+
+        yService.selectProvince().then(function(data){
+            console.log(data)
         })
     }).filter("role", function() {
         return function(roleIndex) {

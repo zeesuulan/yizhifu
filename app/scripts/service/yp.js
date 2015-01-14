@@ -34,6 +34,12 @@ angular.module('yizhifuApp')
 			},
 			userCRUD: function(data){
 				return postFun(data, 'userCRUD')
+			},
+			getProvinceList: function(){
+				return getFun({}, "provinceList")
+			},
+			selectProvince: function() {
+				return getFun({}, "selectProvince")
 			}
 		}
 	})
