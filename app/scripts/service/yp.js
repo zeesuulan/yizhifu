@@ -33,7 +33,7 @@ angular.module('yizhifuApp')
 				return getFun({}, 'userList')
 			},
 			userCRUD: function(data){
-				return getFun(data, 'userCRUD')
+				return postFun(data, 'userCRUD')
 			}
 		}
 	})

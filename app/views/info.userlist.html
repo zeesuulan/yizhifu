@@ -13,10 +13,10 @@
         <thead></thead>
         <tbody>
             <tr>
-                <td at-implicit at-title="用户ID" at-attribute="id"></td>
+                <td at-implicit at-title="用户ID" at-attribute="userId"></td>
                 <td at-implicit at-title="用户名" at-attribute="username"></td>
                 <td at-title="修改">
-                    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="modify(item.id)"></button>
+                    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="modify(item.userId)"></button>
                 </td>
                 <td at-title="删除">
                     <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="remove(item)"></button>
@@ -25,7 +25,7 @@
                 <td at-title="所属角色">{{item.role}}</td>
                 <td at-title="所属区域">{{item.province}}</td>
                 <td at-title="重置密码">
-                    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="resetPsw(item.id)"></button>
+                    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="resetPsw(item.userId)"></button>
                 </td>
             </tr>
         </tbody>

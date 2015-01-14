@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yizhifuApp')
-  .controller('InfoModifyinfoCtrl', function ($rootScope, $scope) {
+  .controller('InfoModifyinfoCtrl', function ($rootScope, $scope, yService) {
 
     	$rootScope.$on("$profileReady", function(){
     		$scope.nickname = $rootScope.profile.nickname
@@ -9,9 +9,17 @@ angular.module('yizhifuApp')
 
     	$scope.modifyInfoClick = function(){
     		if(!$scope.nickname || !$scope.passwd) {
-    			alert("请输入用户姓名和密码！")
+    			alert("请输入要修改的用户姓名和密码！")
                 return
     		}
-    		console.log($scope.nickname, $scope.passwd)
+
+            yService.userCRUD({
+                action: "update",
+                nickname: $scope.nickname,
+                password: $scope.passwd,
+                userid: $rootScope.profile.userId
+            }).then(function(data){
+                console.log(data.data)
+            })
     	}
   });
