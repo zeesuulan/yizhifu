@@ -23,7 +23,6 @@ angular.module('yizhifuApp')
 
 
 
-
 		$scope.updateFilterPeopleList = function() {
 			$scope.filtedPeopleList = $filter("byKeyMatch")("username", $scope.usernameQuery, $scope.people)
 		}
@@ -38,7 +37,19 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.saveModify = function() {
-			console.log($scope.modifyItem)
+
+			yService.userCRUD({
+				action: "update",
+				userid: $scope.modifyItem.userID,
+				nickname: $scope.modifyItem.nickname
+			}).then(function(data) {
+				if (data.data.result == 0) {
+					$('#modifyModal').modal('hide')
+					_getList()
+				} else {
+					alert(ERR_MSG[data.data.result])
+				}
+			})
 		}
 
 		//===========移除用户
@@ -47,21 +58,35 @@ angular.module('yizhifuApp')
 				yService.userCRUD({
 					action: "delete",
 					username: user.username
-				}).then(function(){
+				}).then(function() {
 					_getList()
 				})
 			}
 		}
 
 		//===========新增用户
-		$scope.clearAdd = function(){
+		$scope.clearAdd = function() {
 			$scope.addItem = {}
 		}
 
-		$scope.saveAdd = function(){
+		$scope.saveAdd = function() {
 			console.log($scope.addItem)
-
-			$scope.addItem = {}
+			yService.userCRUD({
+				action: "create",
+				username: $scope.addItem.username,
+				password: $scope.addItem.password,
+				nickname: $scope.addItem.nickname,
+				province: $scope.addItem.province,
+				role: $scope.addItem.role
+			}).then(function(data) {
+				if (data.data.result == 0) {
+					$('#addModal').modal('hide')
+					_getList()
+					$scope.addItem = {}
+				} else {
+					alert(ERR_MSG[data.data.result])
+				}
+			})
 		}
 
 

@@ -32,6 +32,7 @@
     </table>
     <at-pagination at-config="config" at-list="filtedPeopleList"></at-pagination>
 
+    <!-- 修改模态窗口 -->
     <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -69,6 +70,45 @@
         </div>
     </div>
 
+    <!-- 重置密码模态窗口 -->
+    <div class="modal fade" id="modifyPwdModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">修改用户信息</h4>
+                </div>
+                <div class="modal-body form form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户名：</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="modifyItem.username" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户姓名：</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="modifyItem.nickname" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">密码：</label>
+                        <div class="col-sm-5">
+                            <input type="password" ng-model="modifyItem.passwd" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveModify()">保存修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增模态窗口 -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -94,23 +134,22 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">密码：</label>
                         <div class="col-sm-5">
-                            <input type="password" ng-model="addItem.passwd" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">所属省份：</label>
-                        <div class="col-sm-5">
-                            <select ng-model="addItem.province">
-                                <option value="0">超级管理员</option>
-                                <option value="1">全国结算员</option>
-                                <option value="2">省结算员</option>
-                            </select>
+                            <input type="password" ng-model="addItem.password" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">角色：</label>
                         <div class="col-sm-5">
                             <select ng-model="addItem.role">
+                                <option value="1">全国结算员</option>
+                                <option value="2">省结算员</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="addItem.role == 2">
+                        <label class="col-sm-3 control-label">所属省份：</label>
+                        <div class="col-sm-5">
+                            <select ng-model="addItem.province">
                                 <option value="0">超级管理员</option>
                                 <option value="1">全国结算员</option>
                                 <option value="2">省结算员</option>

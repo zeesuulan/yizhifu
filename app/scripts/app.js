@@ -164,9 +164,10 @@ angular
             console.log(data)
         })
 
-        yService.selectProvince().then(function(data){
-            console.log(data)
-        })
+        //当前用户选择了什么省份
+        // yService.selectProvince().then(function(data){
+        //     console.log(data)
+        // })
     }).filter("role", function() {
         return function(roleIndex) {
             return ROLE[roleIndex]
