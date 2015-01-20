@@ -11,7 +11,7 @@ angular.module('yizhifuApp')
 	.controller('InfoUserListCtrl', function($scope, $filter, yService) {
 
 		$scope.config = {
-			itemsPerPage: 5
+			itemsPerPage: 20
 		}
 
 		$scope.maxPage = 0
@@ -57,11 +57,15 @@ angular.module('yizhifuApp')
 		//===========移除用户
 		$scope.remove = function(user) {
 			if (window.confirm("确定删除用户: '" + user.nickname + "' 吗？")) {
-				yService.userCRUD({
-					action: "delete",
-					username: user.username
-				}).then(function() {
-					_getList()
+				yService.userDelete({
+					userid: user.userId
+				}).then(function(data) {
+					if (data.data.result == 0) {
+						alert("删除成功！")
+						_getList()
+					} else {
+						alert(ERR_MSG[data.data.result])
+					}
 				})
 			}
 		}

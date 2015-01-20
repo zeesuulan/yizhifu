@@ -43,6 +43,12 @@ angular.module('yizhifuApp')
 			userCreate: function(data) {
 				return postFun(data, 'userCreate')
 			},
+			userDelete: function(data){
+				return postFun(data, 'userDelete')
+			},
+			userChangeNickname: function(data){
+				return postFun(data, 'userChangeNickname')
+			}
 			getProvinceList: function() {
 				return getFun({}, "provinceList")
 			},

@@ -9,10 +9,10 @@
         <li ng-class="{active: getCurrentPage() == $index+1}" ng-repeat="page in getNumber(maxPage) track by $index">
             <a href="" ng-click="go($index + 1)" class="ng-binding" tabindex="0">{{$index + 1}}</a>
         </li>
-        <li ng-class="{disabled: getCurrentPage() <= maxPage - 1}">
+        <li ng-class="{disabled: getCurrentPage() == maxPage}">
             <a href="" ng-click="next()" tabindex="0">›</a>
         </li>
-        <li ng-class="{disabled: getCurrentPage() <= maxPage - 1}">
+        <li ng-class="{disabled: getCurrentPage() == maxPage}">
             <a href="" ng-click="end()" tabindex="0">尾页</a>
         </li>
     </ul>
