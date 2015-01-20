@@ -1,6 +1,6 @@
 <div>
     <!-- 城市、区县、商圈、一级行业、二级行业、名称 -->
-    <div id="table-up">
+    <div id="table-up" class="clearfix">
         <label class="control-label">按商户名称筛选：</label>
         <input type="text" ng-model="merchantQuery.name" ng-change="updateFiltedMerchantList('name')" />
         <select ng-change="updateFiltedMerchantList('city')" ng-model="merchantQuery.city">

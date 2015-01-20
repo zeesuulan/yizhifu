@@ -11,12 +11,11 @@ angular.module('yizhifuApp')
 	.controller('InfoUserListCtrl', function($scope, $filter, yService) {
 
 		$scope.config = {
-			itemsPerPage: 20
+			itemsPerPage: 1
 		}
 
 		$scope.maxPage = 0
 		$scope.currentPage = 1
-		$scope.people = []
 		$scope.filtedPeopleList = []
 		$scope.modifyItem = {}
 		$scope.addItem = {}
@@ -24,10 +23,6 @@ angular.module('yizhifuApp')
 
 		//初始化获取用户列表
 		_getList()
-
-		$scope.updateFilterPeopleList = function() {
-			$scope.filtedPeopleList = $filter("byKeyMatch")("username", $scope.usernameQuery, $scope.people)
-		}
 
 		//===========修改用户信息
 		$scope.modify = function(item) {
@@ -108,20 +103,48 @@ angular.module('yizhifuApp')
 			})
 		}
 
-
 		//===========获取用户列表
 		function _getList() {
+
 			yService.getUserList({
 				page: $scope.currentPage,
-				perpage: $scope.config.itemsPerPage
+				perpage: $scope.config.itemsPerPage,
+				username: $scope.usernameQuery,
+				role: $scope.roleQuery
 			}).then(function(data) {
 				if (data.data.result == 0) {
-					$scope.maxPage = data.data.pages
-					$scope.people = data.data.users
-					$scope.filtedPeopleList = $scope.people
+					//如果当前分页没有数据
+					if (data.data.users.length == 0) {
+						//如果当前分页不为第一页
+						if($scope.currentPage > 1) {
+							//设置当前分页为最大页数，默认为1
+							$scope.currentPage = data.data.pages || 1
+							//更新列表
+							_getList()
+						}else{
+							//如果当前分页为第一页，则什么都不做
+							$scope.currentPage = 1
+							$scope.maxPage = data.data.pages
+							$scope.filtedPeopleList = []
+							return							
+						}
+					} else {
+						$scope.maxPage = data.data.pages
+						$scope.filtedPeopleList = data.data.users
+					}
 				}
 			})
 		}
+
+		//===========监听值变化
+		$scope.$watch('usernameQuery', function() {
+			_getList()
+		})
+
+		$scope.$watch('roleQuery', function() {
+			_getList()
+		})
+
 
 		//===========监听事件翻页事件
 		$scope.$on($scope.tableId + "-first", function() {

@@ -1,11 +1,11 @@
 <div>
-    <div id="table-up">
+    <div id="table-up" class="clearfix">
         <label class="control-label">按用户名筛选：</label>
-        <input type="text" ng-model="usernameQuery" ng-change="updateFilterPeopleList()" />
-        <select>
-            <option>选择角色</option>
-            <option>全国结算专员</option>
-            <option>省结算专员</option>
+        <input type="text" ng-model="usernameQuery"/>
+        <select ng-model="roleQuery">
+            <option value="">选择角色</option>
+            <option value="1">全国结算专员</option>
+            <option value="2">省结算专员</option>
         </select>
         <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">新增用户</button>
     </div>
