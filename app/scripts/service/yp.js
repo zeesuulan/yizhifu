@@ -10,32 +10,40 @@
 angular.module('yizhifuApp')
 	.factory('yService', function($http) {
 
-        $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
+		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
 
 
 		var postFun = function(data, apiName) {
-			return $http.post('/api/' + apiName, data)
-		}, getFun = function(data, apiName) {
-			return $http.get('/api/' + apiName, data)
-		}
+				return $http.post('/api/' + apiName, data)
+			},
+			getFun = function(data, apiName) {
+				return $http({
+					url: '/api/' + apiName,
+					method: "GET",
+					params: data
+				})
+			}
 
 		return {
 			login: function(data) {
 				return postFun(data, 'login')
 			},
-			logout: function(){
+			logout: function() {
 				return postFun({}, 'logout')
 			},
 			assert: function() {
 				return postFun({}, 'assert')
 			},
-			getUserList: function(){
-				return getFun({}, 'userList')
+			getUserList: function(data) {
+				return getFun(data, 'userList')
 			},
-			userCRUD: function(data){
-				return postFun(data, 'userCRUD')
+			// userCRUD: function(data){
+			// 	return postFun(data, 'userCRUD')
+			// },
+			userCreate: function(data) {
+				return postFun(data, 'userCreate')
 			},
-			getProvinceList: function(){
+			getProvinceList: function() {
 				return getFun({}, "provinceList")
 			},
 			selectProvince: function() {

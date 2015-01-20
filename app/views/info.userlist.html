@@ -30,7 +30,9 @@
             </tr>
         </tbody>
     </table>
-    <at-pagination at-config="config" at-list="filtedPeopleList"></at-pagination>
+    <!-- <at-pagination at-config="config" at-list="filtedPeopleList"></at-pagination> -->
+    <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId"></div>
+
 
     <!-- 修改模态窗口 -->
     <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -150,9 +152,9 @@
                         <label class="col-sm-3 control-label">所属省份：</label>
                         <div class="col-sm-5">
                             <select ng-model="addItem.province">
-                                <option value="0">超级管理员</option>
-                                <option value="1">全国结算员</option>
-                                <option value="2">省结算员</option>
+                                <option value="2">超级管理员</option>
+                                <option value="3">全国结算员</option>
+                                <option value="4">省结算员</option>
                             </select>
                         </div>
                     </div>

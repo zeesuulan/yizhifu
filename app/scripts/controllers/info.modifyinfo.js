@@ -19,7 +19,12 @@ angular.module('yizhifuApp')
                 password: $scope.passwd,
                 userid: $rootScope.profile.userId
             }).then(function(data){
-                console.log(data.data)
+                $scope.passwd = ""
+                if (data.data.result == 0) {
+                    alert("修改成功！")
+                } else {
+                    alert(ERR_MSG[data.data.result])
+                }
             })
     	}
   });

@@ -1,0 +1,19 @@
+<div style="margin: 0px;;margin: 0px;">
+    <ul class="pagination">
+        <li ng-class="{disabled: getCurrentPage() >= 0}">
+            <a href="" ng-click="first()" tabindex="0">首页</a>
+        </li>
+        <li ng-class="{disabled: getCurrentPage() >= 0}">
+            <a href="" ng-click="pre()" tabindex="0">‹</a>
+        </li>
+        <li ng-class="{active: getCurrentPage() == $index+1}" ng-repeat="page in getNumber(maxPage) track by $index">
+            <a href="" ng-click="go($index + 1)" class="ng-binding" tabindex="0">{{$index + 1}}</a>
+        </li>
+        <li ng-class="{disabled: getCurrentPage() <= maxPage - 1}">
+            <a href="" ng-click="next()" tabindex="0">›</a>
+        </li>
+        <li ng-class="{disabled: getCurrentPage() <= maxPage - 1}">
+            <a href="" ng-click="end()" tabindex="0">尾页</a>
+        </li>
+    </ul>
+</div>
