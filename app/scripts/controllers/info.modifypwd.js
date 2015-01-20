@@ -16,14 +16,14 @@ angular.module('yizhifuApp')
                 return
             }
 
-            yService.userCRUD({
-                action: "update",
+            yService.userChangePassword({
                 password: $scope.newpwd,
                 oldPassword: $scope.oldpwd,
                 userid: $rootScope.profile.userId
             }).then(function(data) {
                 if (data.data.result == 0) {
                     alert("密码修改成功！")
+                    $scope.newpwd = $scope.newpwd_confirm = $scope.oldpwd = ""
                 } else {
                     alert(ERR_MSG[data.data.result])
                 }

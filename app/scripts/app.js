@@ -142,12 +142,13 @@ angular
     }).run(function($state, $rootScope, yService) {
 
         $rootScope.profile = {}
+        $rootScope.pList = []
 
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.getProfile = function() {
             yService.assert().then(function(data) {
 
                 $rootScope.profile = data.data.profile
-                //告诉要用值的地方，值ok了。
+                    //告诉要用值的地方，值ok了。
                 $rootScope.$broadcast("$profileReady")
 
                 // if (!$state.is('index') && data.data.result != 0) { //非首页 未登录
@@ -156,27 +157,27 @@ angular
                 //     $state.go('info')
                 // }
             })
+        }
 
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.getProfile()
         })
 
         //获取全部省份
-        yService.getProvinceList().then(function(data){
-            console.log(data)
+        yService.getProvinceList().then(function(data) {
+            $rootScope.pList = data.data.provinces
         })
 
-        //当前用户选择了什么省份
-        // yService.selectProvince().then(function(data){
-        //     console.log(data)
-        // })
+        
     }).filter("role", function() {
         return function(roleIndex) {
             return ROLE[roleIndex]
         }
-    }).filter("byKeyMatch", function(){
+    }).filter("byKeyMatch", function() {
         return function(keystr, matchstr, list) {
             var result = []
-            angular.forEach(list, function(v, k){
-                if(v[keystr].indexOf(matchstr) >= 0) {
+            angular.forEach(list, function(v, k) {
+                if (v[keystr].indexOf(matchstr) >= 0) {
                     this.push(v)
                 }
             }, result)

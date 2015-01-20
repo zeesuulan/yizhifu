@@ -3,7 +3,7 @@
 		<label for="province">请选择省平台：</label>
 		<select id="province" ng-model="province">
 			<option value="">请选择</option>
-			<option value="北京">北京</option>
+			<option value="{{p.id}}" ng-repeat="p in pList">{{p.name}}</option>
 		</select>
 	</div>
     <span>所属区域：{{profile.province}}</span>

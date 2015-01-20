@@ -40,13 +40,13 @@ angular.module('yizhifuApp')
 
 		$scope.saveModify = function() {
 
-			yService.userCRUD({
-				action: "update",
+			yService.userChangeNickname({
 				userid: $scope.modifyItem.userID,
 				nickname: $scope.modifyItem.nickname
 			}).then(function(data) {
 				if (data.data.result == 0) {
 					$('#modifyModal').modal('hide')
+					alert("修改成功！")
 					_getList()
 				} else {
 					alert(ERR_MSG[data.data.result])
@@ -85,6 +85,7 @@ angular.module('yizhifuApp')
 			}).then(function(data) {
 				if (data.data.result == 0) {
 					$('#addModal').modal('hide')
+					alert("添加成功！")
 					_getList()
 					$scope.addItem = {}
 				} else {
@@ -96,7 +97,15 @@ angular.module('yizhifuApp')
 
 		//===========重置用户密码
 		$scope.resetPsw = function(id) {
-			console.log("resetPsw: " + id + " success")
+			yService.userResetPassword({
+				userid: id
+			}).then(function(data) {
+				if (data.data.result == 0) {
+					alert("密码重置成功！")
+				} else {
+					alert(ERR_MSG[data.data.result])
+				}
+			})
 		}
 
 

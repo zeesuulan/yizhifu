@@ -22,7 +22,7 @@
                     <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="remove(item)"></button>
                 </td>
                 <td at-implicit at-title="姓名" at-attribute="nickname"></td>
-                <td at-title="所属角色">{{item.role}}</td>
+                <td at-title="所属角色">{{item.role | role}}</td>
                 <td at-title="所属区域">{{item.province}}</td>
                 <td at-title="重置密码">
                     <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="resetPsw(item.userId)"></button>
@@ -57,12 +57,12 @@
                             <input type="text" ng-model="modifyItem.nickname" class="form-control" />
                         </div>
                     </div>
-                    <div class="form-group">
+                   <!--  <div class="form-group">
                         <label class="col-sm-3 control-label">密码：</label>
                         <div class="col-sm-5">
                             <input type="password" ng-model="modifyItem.passwd" class="form-control" />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

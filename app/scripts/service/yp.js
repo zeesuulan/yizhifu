@@ -37,9 +37,7 @@ angular.module('yizhifuApp')
 			getUserList: function(data) {
 				return getFun(data, 'userList')
 			},
-			// userCRUD: function(data){
-			// 	return postFun(data, 'userCRUD')
-			// },
+			//用户操作
 			userCreate: function(data) {
 				return postFun(data, 'userCreate')
 			},
@@ -48,7 +46,14 @@ angular.module('yizhifuApp')
 			},
 			userChangeNickname: function(data){
 				return postFun(data, 'userChangeNickname')
-			}
+			},
+			userChangePassword: function(data){
+				return postFun(data, 'userChangePassword')
+			},
+			userResetPassword: function(data) {
+				return postFun(data, 'userResetPassword')
+			},
+			//用户操作
 			getProvinceList: function() {
 				return getFun({}, "provinceList")
 			},

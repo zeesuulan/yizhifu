@@ -13,8 +13,7 @@ angular.module('yizhifuApp')
                 return
     		}
 
-            yService.userCRUD({
-                action: "update",
+            yService.userChangeNickname({
                 nickname: $scope.nickname,
                 password: $scope.passwd,
                 userid: $rootScope.profile.userId
@@ -22,6 +21,7 @@ angular.module('yizhifuApp')
                 $scope.passwd = ""
                 if (data.data.result == 0) {
                     alert("修改成功！")
+                    $rootScope.getProfile()
                 } else {
                     alert(ERR_MSG[data.data.result])
                 }
