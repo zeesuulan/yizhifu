@@ -10,12 +10,18 @@
 angular.module('yizhifuApp')
 	.controller('InfoCtrl', function($scope, yService) {
 
+		$scope.provinceId = ""
+
 		$scope.$on('provinceChanged', function(evt, data) {
-			//当前用户选择了什么省份
-			yService.selectProvince({
-				province: data
-			}).then(function(data){
-			    console.log(data)
-			})
+			$scope.provinceId = data
+				//当前用户选择了什么省份
+			if (data) {
+				yService.selectProvince({
+					province: data
+				}).then(function(data) {
+					console.log(data)
+				})
+			}
+
 		})
 	});

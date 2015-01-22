@@ -1,9 +1,9 @@
 <div style="margin: 0px;;margin: 0px;">
     <ul class="pagination">
-        <li ng-class="{disabled: getCurrentPage() >= 0}">
+        <li ng-class="{disabled: getCurrentPage() == 1}">
             <a href="" ng-click="first()" tabindex="0">首页</a>
         </li>
-        <li ng-class="{disabled: getCurrentPage() >= 0}">
+        <li ng-class="{disabled: getCurrentPage() == 1}">
             <a href="" ng-click="pre()" tabindex="0">‹</a>
         </li>
         <li ng-class="{active: getCurrentPage() == $index+1}" ng-repeat="page in getNumber(maxPage) track by $index">

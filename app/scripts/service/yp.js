@@ -57,8 +57,17 @@ angular.module('yizhifuApp')
 			getProvinceList: function() {
 				return getFun({}, "provinceList")
 			},
-			selectProvince: function() {
-				return postFun({}, "selectProvince")
+			selectProvince: function(data) {
+				return postFun(data, "selectProvince")
+			},
+			queryShop: function(data){
+				return getFun(data, 'queryShop')
+			},
+			queryOrder: function(data){
+				return getFun(data, 'queryOrder')
+			},
+			queryLog: function(data){
+				return getFun(data, 'queryLog')
 			}
 		}
 	})

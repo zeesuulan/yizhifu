@@ -34,7 +34,7 @@
     </div>
     <h4>结算日志</h4>
     <!-- 日志id、结算时间、结算专员id、商家名称、结算金额、结算excel下载 -->
-    <table at-table at-list="filtedMerchantDetailList" at-config="config" at-paginated class="table table-striped">
+    <table at-table at-list="logList" at-config="config" at-paginated class="table table-striped">
         <thead></thead>
         <tbody>
             <tr>
@@ -47,5 +47,5 @@
             </tr>
         </tbody>
     </table>
-    <at-pagination at-config="config" at-list="filtedMerchantDetailList"></at-pagination>
+    <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId"></div>
 </div>

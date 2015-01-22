@@ -8,10 +8,10 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-	.controller('InfoUserListCtrl', function($scope, $filter, yService) {
+	.controller('InfoUserListCtrl', function($scope, $rootScope, $filter, yService) {
 
 		$scope.config = {
-			itemsPerPage: 1
+			itemsPerPage: $rootScope.perPage
 		}
 
 		$scope.maxPage = 0
@@ -108,7 +108,7 @@ angular.module('yizhifuApp')
 
 			yService.getUserList({
 				page: $scope.currentPage,
-				perpage: $scope.config.itemsPerPage,
+				perpage: $rootScope.perPage,
 				username: $scope.usernameQuery,
 				role: $scope.roleQuery
 			}).then(function(data) {
@@ -116,17 +116,17 @@ angular.module('yizhifuApp')
 					//如果当前分页没有数据
 					if (data.data.users.length == 0) {
 						//如果当前分页不为第一页
-						if($scope.currentPage > 1) {
+						if ($scope.currentPage > 1) {
 							//设置当前分页为最大页数，默认为1
 							$scope.currentPage = data.data.pages || 1
-							//更新列表
+								//更新列表
 							_getList()
-						}else{
+						} else {
 							//如果当前分页为第一页，则什么都不做
 							$scope.currentPage = 1
 							$scope.maxPage = data.data.pages
 							$scope.filtedPeopleList = []
-							return							
+							return
 						}
 					} else {
 						$scope.maxPage = data.data.pages
@@ -138,11 +138,13 @@ angular.module('yizhifuApp')
 
 		//===========监听值变化
 		$scope.$watch('usernameQuery', function() {
-			_getList()
+			if ($scope.usernameQuery)
+				_getList()
 		})
 
 		$scope.$watch('roleQuery', function() {
-			_getList()
+			if ($scope.roleQuery)
+				_getList()
 		})
 
 
