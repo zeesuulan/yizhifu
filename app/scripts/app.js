@@ -145,7 +145,6 @@ angular
         $rootScope.profile = {}
         $rootScope.pList = []
         $rootScope.perPage = 1
-        
 
         $rootScope.getProfile = function() {
             yService.assert().then(function(data) {

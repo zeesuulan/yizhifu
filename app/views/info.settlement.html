@@ -3,30 +3,22 @@
     <div id="table-up" class="clearfix">
         <label class="control-label">按商户名称筛选：</label>
         <input type="text" ng-model="merchantQuery.shopName" />
-        <select ng-model="merchantQuery.city">
+        <select ng-model="merchantQuery.city" ng-change="cityChange()">
             <option value="">城市</option>
-            <option>全国结算专员</option>
-            <option>省结算专员</option>
+            <option ng-repeat="c in pDetail.cities" value="{{c.cityId}}">{{c.cityName}}</option>
         </select>
-        <select ng-model="merchantCountyQuery.area">
-            <option value="">区县</option>
-            <option>全国结算专员</option>
-            <option>省结算专员</option>
+        <select ng-model="merchantQuery.area" ng-change="areaChange()" ng-show="pDetailAreas.length > 0">
+            <option ng-repeat="a in pDetailAreas" value={{a.areaId}}>{{a.areaName}}</option>
         </select>
-        <select ng-model="merchantQuery.zone">
-            <option value="">商圈</option>
-            <option>全国结算专员</option>
-            <option>省结算专员</option>
+        <select ng-model="merchantQuery.zone" ng-show="pDetailZones.length > 0">
+            <option ng-repeat="z in pDetailZones" value={{z.zoneId}}>{{z.zoneName}}</option>
         </select>
-        <select ng-model="merchantQuery.firstType">
+        <select ng-model="merchantQuery.firstType" ng-change="firstTypeChange()">
             <option value="">一级行业</option>
-            <option>全国结算专员</option>
-            <option>省结算专员</option>
+            <option ng-repeat="f in pDetail.firstTypes" value={{f.firstTypeId}}>{{f.firstTypeName}}</option>
         </select>
-        <select ng-model="merchantQuery.secondType">
-            <option value="">二级行业</option>
-            <option>全国结算专员</option>
-            <option>省结算专员</option>
+        <select ng-model="merchantQuery.secondType" ng-show="pDetailSecondType.length > 0">
+            <option ng-repeat="s in pDetailSecondType" value={{s.secondTypeId}}>{{s.secondTypeName}}</option>
         </select>
     </div>
     <!-- 商户ID、商户名称、所属市、所属区县、所属商圈、一级行业、二级行业、商户地址、结算 -->

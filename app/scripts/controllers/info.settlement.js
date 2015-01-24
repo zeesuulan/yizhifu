@@ -18,10 +18,47 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.tableId = 'settlment'
-
+		$scope.pDetailAreas = []
+		$scope.pDetailZones = []
+		$scope.pDetailSecondType = []
 		$scope.merchantList = []
 
+
 		_getMerchanList()
+		_getProvinceDetail()
+
+
+		//select联动
+		$scope.cityChange = function() {
+			var index = 0
+			angular.forEach($scope.pDetail.cities, function(v, k) {
+				if ($scope.Detail.cities[index].cityId == $scope.merchantQuery.city) {
+					$scope.pDetailAreas = $scope.pDetail.cities[index].areas
+				}
+				++index
+			})
+			$scope.pDetailZones = []
+		}
+
+		$scope.areaChange = function() {
+			var index = 0
+			angular.forEach($scope.pDetailAreas, function(v, k) {
+				if ($scope.pDetailAreas[index].areaId == $scope.merchantQuery.area) {
+					$scope.pDetailZones = $scope.pDetailAreas[index].zones
+				}
+				++index
+			})
+		}
+
+		$scope.firstTypeChange = function() {
+			var index = 0
+			angular.forEach($scope.pDetail.firstTypes, function(v, k) {
+				if ($scope.pDetail.firstTypes[index].firstTypeId == $scope.merchantQuery.firstType) {
+					$scope.pDetailSecondType = $scope.pDetail.firstTypes[index].secondTypes
+				}
+				++index
+			})
+		}
 
 
 		//筛选条件
@@ -91,8 +128,17 @@ angular.module('yizhifuApp')
 					} else {
 						$scope.maxPage = data.data.pages
 						$scope.merchantList = data.data.shops
-						console.log($scope.merchantList)
 					}
+				}
+			})
+		}
+
+		function _getProvinceDetail() {
+			yService.provinceDetail().then(function(data) {
+				if (data.status == 200) {
+					$scope.pDetail = data.data
+				} else {
+					alert(ERR_MSG[data.data.result])
 				}
 			})
 		}
