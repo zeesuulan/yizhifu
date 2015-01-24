@@ -8,9 +8,11 @@
             <option ng-repeat="c in pDetail.cities" value="{{c.cityId}}">{{c.cityName}}</option>
         </select>
         <select ng-model="merchantQuery.area" ng-change="areaChange()" ng-show="pDetailAreas.length > 0">
+            <option value="">区县</option>
             <option ng-repeat="a in pDetailAreas" value={{a.areaId}}>{{a.areaName}}</option>
         </select>
         <select ng-model="merchantQuery.zone" ng-show="pDetailZones.length > 0">
+            <option value="">商圈</option>
             <option ng-repeat="z in pDetailZones" value={{z.zoneId}}>{{z.zoneName}}</option>
         </select>
         <select ng-model="merchantQuery.firstType" ng-change="firstTypeChange()">
@@ -18,6 +20,7 @@
             <option ng-repeat="f in pDetail.firstTypes" value={{f.firstTypeId}}>{{f.firstTypeName}}</option>
         </select>
         <select ng-model="merchantQuery.secondType" ng-show="pDetailSecondType.length > 0">
+            <option value="">二级行业</option>
             <option ng-repeat="s in pDetailSecondType" value={{s.secondTypeId}}>{{s.secondTypeName}}</option>
         </select>
     </div>

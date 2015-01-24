@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yizhifuApp')
-	.controller('InfoSettlementCtrl', function($scope, $rootScope, yService) {
+	.controller('InfoSettlementCtrl', function($scope, $rootScope, $timeout, yService) {
 
 		$scope.config = {
 			itemsPerPage: $rootScope.perPage
@@ -30,9 +30,11 @@ angular.module('yizhifuApp')
 
 		//select联动
 		$scope.cityChange = function() {
+			$scope.merchantQuery.area = ""
+
 			var index = 0
 			angular.forEach($scope.pDetail.cities, function(v, k) {
-				if ($scope.Detail.cities[index].cityId == $scope.merchantQuery.city) {
+				if ($scope.pDetail.cities[index].cityId == $scope.merchantQuery.city) {
 					$scope.pDetailAreas = $scope.pDetail.cities[index].areas
 				}
 				++index
@@ -41,6 +43,8 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.areaChange = function() {
+			$scope.merchantQuery.zone = ""
+
 			var index = 0
 			angular.forEach($scope.pDetailAreas, function(v, k) {
 				if ($scope.pDetailAreas[index].areaId == $scope.merchantQuery.area) {
@@ -51,6 +55,8 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.firstTypeChange = function() {
+			$scope.merchantQuery.secondType = ""
+
 			var index = 0
 			angular.forEach($scope.pDetail.firstTypes, function(v, k) {
 				if ($scope.pDetail.firstTypes[index].firstTypeId == $scope.merchantQuery.firstType) {
@@ -61,11 +67,16 @@ angular.module('yizhifuApp')
 		}
 
 
+		var snPromise = null
+
 		//筛选条件
 		$scope.$watch('merchantQuery.shopName', function(oldVal, newVal) {
-			if (oldVal != newVal) {
-				_getMerchanList()
-			}
+			$timeout.cancel(snPromise)
+			snPromise = $timeout(function(){
+				if (oldVal != newVal) {
+					_getMerchanList()
+				}
+			}, 200)
 		})
 
 		$scope.$watch('merchantQuery.city', function(oldVal, newVal) {
