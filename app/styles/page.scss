@@ -1,4 +1,7 @@
 @import 'main.scss';
+.modal-open {
+	margin-right: -15px;
+}
 #viewbox {
 	width: 100%;
 	height: 100%;
@@ -71,12 +74,14 @@
 	}
 }
 #subnav {
-	/*height: 27px;*/
-	height: 35px;
+	/* height: 27px;
+	*/
+	height: 40px;
 	width: 100%;
 	min-width: 800px;
-	line-height: 35px;
-	/*line-height: 27px;*/
+	line-height: 40px;
+	/* line-height: 27px;
+	*/
 	background: url(../images/bg_top02.png) 0 0 repeat-x rgb(69, 168, 223);
 	text-align: right;
 	color: #fff;
@@ -129,11 +134,12 @@
 	overflow: scroll;
 	background-color: white;
 	position: absolute;
-	bottom: 0;
+	bottom: 90px;
 	right: 0;
 	left: 197px;
 	top: 0;
-	>div{
+	padding-bottom: 10px;
+	>div {
 		padding: 0 10px;
 	}
 }
@@ -142,7 +148,7 @@
 	margin-left: 193px;
 	width: 300px;
 	float: left;
-	/*select {
+	/* select {
 		display: inline-block;
 		width: 100px;
 		height: 20px;
@@ -159,23 +165,21 @@
 		-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
 		-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	}*/
+	}
+	*/
 }
-
-#table-up{
+#table-up {
 	padding: 10px 5px;
 }
-
-.dpbox{
+.dpbox {
 	margin-left: -15px;
 }
-
-.c_icon, .e_icon{
+.c_icon, .e_icon {
 	line-height: 30px;
 }
-.c_icon{
+.c_icon {
 	color: green;
 }
-.e_icon{
+.e_icon {
 	color: red;
 }

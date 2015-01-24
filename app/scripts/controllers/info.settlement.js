@@ -183,5 +183,4 @@ angular.module('yizhifuApp')
 			_getMerchanList()
 		})
 
-
 	});
