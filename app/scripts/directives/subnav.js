@@ -24,12 +24,11 @@ angular.module('yizhifuApp')
 				scope.province = scope.provinceId
 
 				//当前用户选择了什么省份
-				scope.$watch('province', function() {
+				scope.$watch('province', function(oldv, news) {
 					if (scope.province && scope.province != scope.provinceId) {
 						scope.$emit("provinceChanged", scope.province)
 					}
 				})
-
 			}
 		};
 	});

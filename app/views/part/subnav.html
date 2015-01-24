@@ -1,7 +1,7 @@
 <div id="subnav">
-	<div id="province-box">
-		<label for="province">请选择省平台：</label>
-		<select id="province" ng-model="province">
+	<div id="province-box" ng-show="profile.role != 0">
+		<label >请选择省平台：</label>
+		<select ng-model="province">
 			<option value="">请选择</option>
 			<option value="{{p.id}}" ng-repeat="p in pList">{{p.name}}</option>
 		</select>

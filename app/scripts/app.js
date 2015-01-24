@@ -165,12 +165,11 @@ angular
             $rootScope.getProfile()
         })
 
-        //获取全部省份
         yService.getProvinceList().then(function(data) {
             $rootScope.pList = data.data.provinces
         })
 
-        
+
     }).filter("role", function() {
         return function(roleIndex) {
             return ROLE[roleIndex]

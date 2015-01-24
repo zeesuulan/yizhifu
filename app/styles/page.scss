@@ -71,11 +71,13 @@
 	}
 }
 #subnav {
-	height: 27px;
+	/*height: 27px;*/
+	height: 35px;
 	width: 100%;
 	min-width: 800px;
-	line-height: 27px;
-	background: url(../images/bg_top02.png) 0 0 repeat-x;
+	line-height: 35px;
+	/*line-height: 27px;*/
+	background: url(../images/bg_top02.png) 0 0 repeat-x rgb(69, 168, 223);
 	text-align: right;
 	color: #fff;
 	font-size: 14px;
@@ -88,13 +90,14 @@
 	width: 100%;
 	min-height: 100%;
 	overflow: hidden;
+	position: relative;
 	#menu {
 		width: 197px;
 		padding: 0 2px;
 		background-color: #eee;
 		position: absolute;
 		bottom: 0;
-		top: 87px;
+		top: 0;
 		left: 0;
 		li {
 			cursor: pointer;
@@ -129,7 +132,7 @@
 	bottom: 0;
 	right: 0;
 	left: 197px;
-	top: 86px;
+	top: 0;
 	>div{
 		padding: 0 10px;
 	}
@@ -139,7 +142,7 @@
 	margin-left: 193px;
 	width: 300px;
 	float: left;
-	select {
+	/*select {
 		display: inline-block;
 		width: 100px;
 		height: 20px;
@@ -156,7 +159,7 @@
 		-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
 		-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	}
+	}*/
 }
 
 #table-up{

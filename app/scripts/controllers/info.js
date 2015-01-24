@@ -8,9 +8,9 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-	.controller('InfoCtrl', function($scope, yService) {
+	.controller('InfoCtrl', function($scope, $rootScope, yService) {
 
-		$scope.provinceId = ""
+		$scope.provinceId = $rootScope.provinceId
 
 		$scope.$on('provinceChanged', function(evt, data) {
 			$scope.provinceId = data
@@ -19,9 +19,9 @@ angular.module('yizhifuApp')
 				yService.selectProvince({
 					province: data
 				}).then(function(data) {
-					console.log(data)
+					$rootScope.provinceId = $scope.provinceId 
+					$scope.$broadcast('$provinceUpdate')
 				})
 			}
-
 		})
 	});

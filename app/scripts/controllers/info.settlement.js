@@ -23,10 +23,13 @@ angular.module('yizhifuApp')
 		$scope.pDetailSecondType = []
 		$scope.merchantList = []
 
-
 		_getMerchanList()
 		_getProvinceDetail()
 
+		$scope.$on('$provinceUpdate', function() {
+			_getMerchanList()
+			_getProvinceDetail()
+		})
 
 		//select联动
 		$scope.cityChange = function() {
@@ -72,7 +75,7 @@ angular.module('yizhifuApp')
 		//筛选条件
 		$scope.$watch('merchantQuery.shopName', function(oldVal, newVal) {
 			$timeout.cancel(snPromise)
-			snPromise = $timeout(function(){
+			snPromise = $timeout(function() {
 				if (oldVal != newVal) {
 					_getMerchanList()
 				}

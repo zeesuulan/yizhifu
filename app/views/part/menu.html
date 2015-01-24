@@ -3,7 +3,7 @@
         <li ng-click="open('userManagement')" class="navbtn">用户管理</li>
         <li ng-show="isShowUserManagement">
             <ul>
-                <li class="subnavbtn"><a ui-sref="info.userlist">用户列表</a>
+                <li class="subnavbtn" ng-if="profile.role == 0"><a ui-sref="info.userlist">用户列表</a>
                 </li>
                 <li class="subnavbtn"><a ui-sref="info.modifyinfo">修改信息</a>
                 </li>
@@ -11,8 +11,8 @@
                 </li>
             </ul>
         </li>
-        <li ng-click="open('settleManagement')" class="navbtn">结算管理</li>
-        <li ng-show="isShowSettleManagement">
+        <li ng-click="open('settleManagement')" class="navbtn" ng-if="profile.role != 0">结算管理</li>
+        <li ng-show="isShowSettleManagement" ng-if="profile.role != 0">
             <ul>
                 <li class="subnavbtn"><a ui-sref="info.settlement">商户结算</a>
                 </li>
@@ -20,8 +20,8 @@
                 </li>
             </ul>
         </li>
-        <li ng-click="open('logQuery')" class="navbtn">日志查询</li>
-        <li ng-show="isShowLogQuery">
+        <li ng-click="open('logQuery')" class="navbtn" ng-if="profile.role != 0">日志查询</li>
+        <li ng-show="isShowLogQuery" ng-if="profile.role != 0">
             <ul>
                 <li class="subnavbtn"><a ui-sref="info.logquery">结算日志</a>
                 </li>

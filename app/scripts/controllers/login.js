@@ -21,7 +21,7 @@ angular.module('yizhifuApp')
 				username: $scope.username,
 				password: $scope.password
 			}).then(function(data) {
-				
+
 				if (data.data.result == 0) {
 					//保存用户信息
 					$state.go("info")

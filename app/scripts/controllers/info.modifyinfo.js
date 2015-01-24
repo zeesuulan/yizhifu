@@ -4,6 +4,7 @@ angular.module('yizhifuApp')
   .controller('InfoModifyinfoCtrl', function ($rootScope, $scope, yService) {
 
     	$rootScope.$on("$profileReady", function(){
+            if($rootScope.profile)
     		$scope.nickname = $rootScope.profile.nickname
     	})
 
