@@ -1,35 +1,37 @@
 <!-- 二级订单ID、消费码、订单内容、商品属性、订单生成时间、订单销码时间、客户手机号。 -->
 <div>
     <div id="table-up" class="clearfix">
-        <label class="control-label">结算专员id</label>
-        <input type="text" ng-model="merchantQuery.name" ng-change="updateFiltedMerchantList('name')" />
-        <label class="control-label">商家名称</label>
-        <input type="text" ng-model="merchantQuery.name" ng-change="updateFiltedMerchantList('name')" />
-        <div class="dpbox col-sm-3">
-            选择开始时间：
-            <div class="dropdown">
-                <a class="dropdown-toggle my-toggle-select-start" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                    <div class="input-append input-group">
-                        <input type="text" class="form-control" value="{{data.startdate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="data.startdate" data-datetimepicker-config="{{dpconfig_start}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
-                </ul>
+            <div class="dpbox col-sm-3 ">
+                选择开始时间：
+                <div class="dropdown">
+                    <a class="dropdown-toggle my-toggle-select-start" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                        <div class="input-append input-group">
+                            <input type="text" class="form-control" value="{{logQuery.startDateTime|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="logQuery.startDateTime" data-datetimepicker-config="{{dpconfig}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="dpbox col-sm-3">
-            选择结束时间：
-            <div class="dropdown">
-                <a class="dropdown-toggle my-toggle-select-end" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                    <div class="input-append input-group">
-                        <input type="text" class="form-control" value="{{data.enddate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="data.enddate" data-datetimepicker-config="{{dpconfig_end}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
-                </ul>
+            <div class="dpbox col-sm-3">
+                选择结束时间：
+                <div class="dropdown">
+                    <a class="dropdown-toggle my-toggle-select-end" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                        <div class="input-append input-group">
+                            <input type="text" class="form-control" value="{{logQuery.endDateTime|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="logQuery.endDateTime" data-datetimepicker-config="{{dpconfig}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
+                    </ul>
+                </div>
             </div>
+        <div class="clearfix" style="margin-top:20px;">
+            <label class="control-label">结算专员id</label>
+            <input type="text" ng-model="logQuery.operatorId" />
+            <label class="control-label">商家名称</label>
+            <input type="text" ng-model="logQuery.shopName" />
         </div>
     </div>
     <h4>结算日志</h4>
@@ -39,12 +41,14 @@
         <thead></thead>
         <tbody>
             <tr>
-                <td at-implicit at-title="日志id" at-attribute="id"></td>
-                <td at-implicit at-title="结算时间" at-attribute="name"></td>
-                <td at-implicit at-title="结算专员id" at-attribute="city"></td>
-                <td at-implicit at-title="商家名称" at-attribute="county"></td>
-                <td at-implicit at-title="结算金额" at-attribute="zone"></td>
-                <td at-implicit at-title="结算excel" at-attribute="first"></td>
+                <td at-implicit at-title="日志id" at-attribute="logId"></td>
+                <td at-implicit at-title="结算时间" at-attribute="settleTime"></td>
+                <td at-implicit at-title="结算专员id" at-attribute="operatorId"></td>
+                <td at-implicit at-title="商家名称" at-attribute="shopName"></td>
+                <td at-implicit at-title="结算金额" at-attribute="money"></td>
+                <td at-title="结算excel" at-attribute="excelUrl">
+                    <a ng-href="{{item.excelUrl}}" target="_blank">下载地址</a>
+                </td>
             </tr>
         </tbody>
     </table>

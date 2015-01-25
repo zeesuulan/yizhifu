@@ -8,18 +8,19 @@
  * Controller of the yizhifuApp
  */
 angular.module('yizhifuApp')
-	.controller('InfoCtrl', function($scope, $rootScope, yService) {
+	.controller('InfoCtrl', function($scope, $rootScope, $cookieStore, yService) {
 
-		$scope.provinceId = $rootScope.provinceId
-
+		$scope.provinceId = $cookieStore.get('provinceId')
+		
 		$scope.$on('provinceChanged', function(evt, data) {
 			$scope.provinceId = data
 				//当前用户选择了什么省份
+			$cookieStore.put('provinceId', parseInt(data))
+
 			if (data) {
 				yService.selectProvince({
 					province: data
 				}).then(function(data) {
-					$rootScope.provinceId = $scope.provinceId 
 					$scope.$broadcast('$provinceUpdate')
 				})
 			}

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yizhifuApp')
-	.controller('InfoLedgerqueryCtrl', function($scope, $rootScope, yService) {
+	.controller('InfoLedgerqueryCtrl', function($scope, $rootScope, $filter, yService) {
 
 		$scope.config = {
 			itemsPerPage: $rootScope.perPage
@@ -10,12 +10,36 @@ angular.module('yizhifuApp')
 		$scope.tableId = 'ledger'
 		$scope.ledgerQueryList = []
 
+		$scope.dpconfig = {
+			minView: 'day'
+		}
+
 
 		_getList()
 
 		$scope.$on('$provinceUpdate', function() {
 			_getList()
 		})
+
+		$scope.toCreate = function() {
+			if (!$scope.data || !$scope.data.startdate || !$scope.data.enddate) {
+				alert("请选择要生成的日期区间!")
+				return
+			}
+			yService.createReport({
+				startDate: $filter('date')($scope.data.startdate, 'yyyyMMdd'),
+				endDate: $filter('date')($scope.data.enddate, 'yyyyMMdd')
+			}).then(function(data) {
+				if (data.data.result == 0) {
+					alert("申请成功！")
+					$scope.data.startdate = ""
+					$scope.data.enddate = ""
+					_getList()
+				} else {
+					alert(ERR_MSG[data.data.result])
+				}
+			})
+		}
 
 		function _getList() {
 			yService.queryReport({
@@ -42,6 +66,8 @@ angular.module('yizhifuApp')
 						$scope.maxPage = data.data.pages
 						$scope.ledgerQueryList = data.data.reports
 					}
+				}else{
+					alert(ERR_MSG[data.data.result])
 				}
 			})
 		}

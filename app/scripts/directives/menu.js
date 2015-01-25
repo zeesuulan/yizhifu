@@ -7,7 +7,7 @@
  * # yMenu
  */
 angular.module('yizhifuApp')
-	.directive('yMenu', function() {
+	.directive('yMenu', function($cookieStore) {
 		return {
 			templateUrl: 'views/part/menu.html',
 			restrict: 'A',
@@ -37,10 +37,10 @@ angular.module('yizhifuApp')
 				}
 
 				scope.open = function(type) {
-					// if (!scope.province) {
-					// 	alert("请选择省平台!")
-					// 	return
-					// }
+					if (!$cookieStore.get('provinceId')) {
+						alert("请选择省平台!")
+						return
+					}
 					if (typeof(toggle[type]) == 'function') {
 						toggle[type].call()
 					}

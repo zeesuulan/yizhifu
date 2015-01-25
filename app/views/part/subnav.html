@@ -1,9 +1,9 @@
 <div id="subnav">
 	<div id="province-box" ng-show="profile.role != 0">
 		<label >请选择省平台：</label>
-		<select ng-model="province">
+		<select ng-model="province" ng-options="p.id as p.name for p in pList">
 			<option value="">请选择</option>
-			<option value="{{p.id}}" ng-repeat="p in pList">{{p.name}}</option>
+			<!-- <option value="{{p.id}}" ng-repeat="p in pList">{{p.name}}</option> -->
 		</select>
 	</div>
     <span>所属区域：{{profile.province}}</span>

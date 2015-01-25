@@ -17,6 +17,7 @@ window.ERR_MSG = {
     "13": "登录已超时，请重新登录！",
     "14": "选择的日期不对！",
     "15": "您尚未选择对应省份，无法操作！",
+    "99": "未知错误！",
     "100": "系统正忙！",
 };
 window.ROLE = [
@@ -140,7 +141,7 @@ angular
         moment.locale("zh-cn")
 
 
-    }).run(function($state, $rootScope, yService) {
+    }).run(function($state, $rootScope, $cookieStore, yService) {
 
         $rootScope.profile = {}
         $rootScope.pList = []
@@ -163,12 +164,19 @@ angular
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             $rootScope.getProfile()
-        })
 
-        yService.getProvinceList().then(function(data) {
-            $rootScope.pList = data.data.provinces
-        })
+            if ($rootScope.pList.length == 0) {
+                yService.getProvinceList().then(function(data) {
+                    if (data.result == 0) {
+                        $rootScope.pList = data.data.provinces
 
+                        if ($rootScope.pList.length == 1) {
+                            $cookieStore.put('provinceId', $rootScope.pList[0].id)
+                        }
+                    }
+                })
+            }
+        })
 
     }).filter("role", function() {
         return function(roleIndex) {

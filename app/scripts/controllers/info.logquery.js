@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yizhifuApp')
-	.controller('InfoLogqueryCtrl', function($scope, $rootScope, yService) {
+	.controller('InfoLogqueryCtrl', function($scope, $rootScope, $timeout, $filter, yService) {
 
 		$scope.config = {
 			itemsPerPage: $rootScope.perPage
@@ -9,13 +9,58 @@ angular.module('yizhifuApp')
 		$scope.currentPage = 1
 		$scope.tableId = 'log'
 		$scope.logList = []
+		$scope.dpconfig = {
+			minView: 'day'
+		}
+
+
+		$scope.logQuery = {
+			shopName: "",
+			operatorId: "",
+			startDateTime: "",
+			endDateTime: ""
+		}
 
 		_getLogs()
+
+		var snPromise = null
+
+		$scope.$on('$provinceUpdate', function() {
+			_getLogs()
+		})
+
+		$scope.$watch('logQuery.shopName', function(oldVal, newVal) {
+			$timeout.cancel(snPromise)
+			snPromise = $timeout(function() {
+				if (oldVal != newVal) {
+					_getLogs()
+				}
+			}, 200)
+		})
+
+		$scope.$watch('logQuery.operatorId', function(oldVal, newVal) {
+			$timeout.cancel(snPromise)
+			snPromise = $timeout(function() {
+				if (oldVal != newVal) {
+					_getLogs()
+				}
+			}, 200)
+		})
+
+		$scope.$watch('logQuery.endDateTime', function() {
+			if ($scope.logQuery.startDateTime) {
+				_getLogs()
+			}
+		})
 
 		function _getLogs() {
 			yService.queryLog({
 				perpage: $scope.config.itemsPerPage,
-				page: $scope.currentPage
+				page: $scope.currentPage,
+				shopName: $scope.logQuery.shopName,
+				operatorId: $scope.logQuery.operatorId,
+				startDateTime: $filter('date')($scope.logQuery.startDateTime, 'yyyyMMdd'),
+				endDateTime: $filter('date')($scope.logQuery.endDateTime, 'yyyyMMdd')
 			}).then(function(data) {
 				if (data.data.result == 0) {
 					//如果当前分页没有数据
@@ -37,7 +82,35 @@ angular.module('yizhifuApp')
 						$scope.maxPage = data.data.pages
 						$scope.logList = data.data.logs
 					}
+				} else {
+					alert(ERR_MSG[data.data.result])
 				}
 			})
 		}
+
+		//===========监听事件翻页事件
+		$scope.$on($scope.tableId + "-first", function() {
+			$scope.currentPage = 1
+			_getLogs()
+		})
+
+		$scope.$on($scope.tableId + "-end", function() {
+			$scope.currentPage = $scope.maxPage
+			_getLogs()
+		})
+
+		$scope.$on($scope.tableId + "-pre", function(evt, data) {
+			$scope.currentPage = data
+			_getLogs()
+		})
+
+		$scope.$on($scope.tableId + "-next", function(evt, data) {
+			$scope.currentPage = data
+			_getLogs()
+		})
+
+		$scope.$on($scope.tableId + "-go", function(evt, data) {
+			$scope.currentPage = data
+			_getLogs()
+		})
 	});
