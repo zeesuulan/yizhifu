@@ -34,6 +34,7 @@
     </div>
     <h4>结算日志</h4>
     <!-- 日志id、结算时间、结算专员id、商家名称、结算金额、结算excel下载 -->
+    <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="logList.length > 0"></div>
     <table at-table at-list="logList" at-config="config" at-paginated class="table table-striped">
         <thead></thead>
         <tbody>
@@ -47,5 +48,5 @@
             </tr>
         </tbody>
     </table>
-    <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId"></div>
+    <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="logList.length > 0"></div>
 </div>

@@ -71,6 +71,12 @@ angular.module('yizhifuApp')
 			},
 			queryLog: function(data){
 				return getFun(data, 'queryLog')
+			},
+			queryReport: function(data){
+				return getFun(data, 'queryReport')
+			},
+			createReport: function(data){
+				return postFun(data, 'createReport')
 			}
 		}
 	})

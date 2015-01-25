@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yizhifuApp')
-	.controller('InfoSettlementDetailCtrl', function($scope, $filter, $stateParams, yService) {
+	.controller('InfoSettlementDetailCtrl', function($scope, $filter, $state, $stateParams, yService) {
 
 		$scope.config = {
 			itemsPerPage:  50
@@ -16,8 +16,11 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.dpconfig_end.dropdownSelector = '.my-toggle-select-end'
-
 		$scope.merchantDetailList = []
+
+
+
+		_getMerchantDetails()
 
 
 		$scope.onTimeSet = function(newDate, oldDate) {
@@ -26,7 +29,10 @@ angular.module('yizhifuApp')
 			}
 		}
 
-		_getMerchantDetails()
+		$scope.$on('$provinceUpdate', function() {
+			$state.go('info.settlement')
+		})
+
 
 		function _getMerchantDetails() {
 			yService.queryOrder({

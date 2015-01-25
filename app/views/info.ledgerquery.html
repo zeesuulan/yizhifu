@@ -29,7 +29,8 @@
         </div>
     </div>
     <h4>生成订单列表</h4>
-    <table at-table at-list="filtedMerchantDetailList" at-config="config" at-paginated class="table table-striped">
+    <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="ledgerQueryList.length > 0"></div>
+    <table at-table at-list="ledgerQueryList" at-config="config" at-paginated class="table table-striped">
         <thead></thead>
         <tbody>
             <tr>
@@ -40,5 +41,5 @@
             </tr>
         </tbody>
     </table>
-    <at-pagination at-config="config" at-list="filtedMerchantDetailList"></at-pagination>
+    <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="ledgerQueryList.length > 0"></div>
 </div>
