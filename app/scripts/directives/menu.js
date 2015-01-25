@@ -7,7 +7,7 @@
  * # yMenu
  */
 angular.module('yizhifuApp')
-	.directive('yMenu', function($cookieStore) {
+	.directive('yMenu', function($cookieStore, $rootScope) {
 		return {
 			templateUrl: 'views/part/menu.html',
 			restrict: 'A',
@@ -37,7 +37,7 @@ angular.module('yizhifuApp')
 				}
 
 				scope.open = function(type) {
-					if (!$cookieStore.get('provinceId')) {
+					if ($rootScope.profile.role != 0 && !$cookieStore.get('provinceId')) {
 						alert("请选择省平台!")
 						return
 					}

@@ -22,7 +22,9 @@ angular.module('yizhifuApp')
 		$scope.tableId = 'userlist'
 
 		//初始化获取用户列表
-		_getList()
+		// $rootScope.$on("$profileReady", function() {
+			_getList()
+		// })
 
 		//===========修改用户信息
 		$scope.modify = function(item) {

@@ -1,12 +1,17 @@
 <div id="subnav">
-	<div id="province-box" ng-show="profile.role != 0">
-		<label >请选择省平台：</label>
-		<select ng-model="province" ng-options="p.id as p.name for p in pList">
-			<option value="">请选择</option>
-			<!-- <option value="{{p.id}}" ng-repeat="p in pList">{{p.name}}</option> -->
-		</select>
-	</div>
-    <span>所属区域：{{profile.province}}</span>
+    <div id="province-box">
+        <div ng-if="profile.role == 1">
+            <label>请选择省平台：</label>
+            <select ng-model="province" ng-options="p.id as p.name for p in pList">
+                <option value="">请选择</option>
+                <!-- <option value="{{p.id}}" ng-repeat="p in pList">{{p.name}}</option> -->
+            </select>
+        </div>
+        <div ng-if="profile.role == 2">
+			当前平台为: {{pList[0].name}}
+        </div>
+    </div>
+    <span>所属区域：{{provinceName}}</span>
     <span>登录者：{{profile.nickname}}({{profile.role|role}})</span>
     <span>当前日期：{{datetime | date: "yyyy年MM月dd日"}}</span>
 </div>

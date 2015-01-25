@@ -145,38 +145,48 @@ angular
 
         $rootScope.profile = {}
         $rootScope.pList = []
-        $rootScope.perPage = 1
+        $rootScope.perPage = 10
+
+        $cookieStore.remove('provinceId')
 
         $rootScope.getProfile = function() {
+
             yService.assert().then(function(data) {
+                if (!$state.is('index') && data.data.result != 0) { //非首页 未登录
+                    $state.go('index')
+                } else if ($state.is('index') && data.data.result == 0) {
+                    $state.go('info')
+                }
+
+                //为了防止后面出错，当profile为undefined时，不进行后面的逻辑
+                if (!data.data.profile) return
 
                 $rootScope.profile = data.data.profile
                     //告诉要用值的地方，值ok了。
-                $rootScope.$broadcast("$profileReady")
 
-                // if (!$state.is('index') && data.data.result != 0) { //非首页 未登录
-                //     $state.go('index')
-                // } else if ($state.is('index') && data.data.result == 0) {
-                //     $state.go('info')
-                // }
+                if ($rootScope.pList.length == 0) {
+                    yService.getProvinceList().then(function(data) {
+                        if (data.status == 200) {
+                            $rootScope.pList = data.data.provinces
+                            if ($rootScope.pList.length == 1) {
+                                $cookieStore.put('provinceId', $rootScope.pList[0].id)
+                            }
+                        }
+                        $rootScope.$broadcast("$profileReady")
+                    })
+                } else {
+                    $rootScope.$broadcast("$profileReady")
+                }
             })
         }
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             $rootScope.getProfile()
-
-            if ($rootScope.pList.length == 0) {
-                yService.getProvinceList().then(function(data) {
-                    if (data.result == 0) {
-                        $rootScope.pList = data.data.provinces
-
-                        if ($rootScope.pList.length == 1) {
-                            $cookieStore.put('provinceId', $rootScope.pList[0].id)
-                        }
-                    }
-                })
-            }
         })
+
+        $rootScope.logout = function(){
+            $rootScope.pList = []
+        }
 
     }).filter("role", function() {
         return function(roleIndex) {
@@ -191,5 +201,33 @@ angular
                 }
             }, result)
             return result
+        }
+    }).filter("province", function($rootScope) {
+        return function() {
+            if ($rootScope.profile.role == 1) {
+                return '全国'
+            } else {
+                var result = []
+                angular.forEach($rootScope.pList, function(v, k) {
+                    console.log($rootScope.profile.province)
+                    if (v.id == $rootScope.profile.province) {
+                        this.push(v.name)
+                    }
+                }, result)
+                return result[0]
+            }
+        }
+    }).filter("provinceInList", function($rootScope) {
+        return function(id) {
+            if (id == 1)
+                return '全国'
+
+            var result = []
+            angular.forEach($rootScope.pList, function(v, k) {
+                if (v.id == id) {
+                    this.push(v.name)
+                }
+            }, result)
+            return result[0]
         }
     })

@@ -8,7 +8,7 @@
  */
 
 angular.module('yizhifuApp')
-	.directive('yHeader', function($state, $cookieStore, yService) {
+	.directive('yHeader', function($state, $cookieStore, $rootScope, yService) {
 		return {
 			templateUrl: 'views/part/header.html',
 			restrict: 'A',
@@ -32,6 +32,7 @@ angular.module('yizhifuApp')
 					yService.logout().then(function(data) {
 						if (data.data.result == 0) {
 							$cookieStore.remove('provinceId')
+							$rootScope.logout()
 							$state.go("index")
 						} else {
 							alert(ERR_MSG[data.data.result])
