@@ -1,26 +1,23 @@
 <!-- 二级订单ID、消费码、订单内容、商品属性、订单生成时间、订单销码时间、客户手机号。 -->
 <div>
     <div id="table-up" class="clearfix">
-        <div class="dpbox col-sm-3">
-            选择开始时间：
+        <div class="dpbox col-sm-3" style="width:240px;">
+            开始时间：
             <!-- 不能选择，默认为第一个时间 -->
             <div class="dropdown">
                 <a class="dropdown-toggle my-toggle-select-start" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                     <div class="input-append input-group">
-                        <input type="text" class="form-control" value="{{data.startdate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" ng-model="startdate" disabled><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </a>
-               <!--  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="data.startdate" data-datetimepicker-config="{{dpconfig_start}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
-                </ul> -->
             </div>
         </div>
-        <div class="dpbox col-sm-3">
+        <div class="dpbox col-sm-3" style="width:260px;">
             选择结束时间：
             <div class="dropdown">
                 <a class="dropdown-toggle my-toggle-select-end" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                     <div class="input-append input-group">
-                        <input type="text" class="form-control" value="{{data.enddate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" value="{{data.enddate|date:'yyyy年MM月dd日 HH:mm:ss'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -29,6 +26,8 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-primary glyphicon glyphicon-pencil" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0"></button>
+    <a ui-sref="info.settlement" class="btn btn-info">返回上一级</a>
     <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="merchantDetailList.length > 0"></div>
     <table at-table at-list="merchantDetailList" at-config="config" at-paginated class="table table-striped">
         <thead></thead>
@@ -48,6 +47,33 @@
     </table>
     <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="merchantDetailList.length > 0"></div>
     <!-- 需要提供一个界面输入密码 -->
-    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="settlement()"></button>
+    <button class="btn btn-primary glyphicon glyphicon-pencil" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0"></button>
     <a ui-sref="info.settlement" class="btn btn-info">返回上一级</a>
+
+
+    <!-- 修改模态窗口 -->
+    <div class="modal fade" id="passwdModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">输入密码确认结算</h4>
+                </div>
+                <div class="modal-body form form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" ng-model="passwd.password" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="settle()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

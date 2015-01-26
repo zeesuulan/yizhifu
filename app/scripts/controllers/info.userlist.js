@@ -140,13 +140,11 @@ angular.module('yizhifuApp')
 
 		//===========监听值变化
 		$scope.$watch('usernameQuery', function() {
-			if ($scope.usernameQuery)
-				_getList()
+			_getList()
 		})
 
 		$scope.$watch('roleQuery', function() {
-			if ($scope.roleQuery)
-				_getList()
+			_getList()
 		})
 
 

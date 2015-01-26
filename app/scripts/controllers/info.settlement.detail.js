@@ -9,14 +9,15 @@ angular.module('yizhifuApp')
 		$scope.currentPage = 1
 		$scope.tableId = 'settlmentDetials'
 
-		$scope.dpconfig_start = $scope.dpconfig_end = {
+		$scope.dpconfig_end = {
 			dropdownSelector: '.my-toggle-select-start',
 			startView: 'year',
-			minView: 'day'
+			minView: 'minute'
 		}
 
 		$scope.dpconfig_end.dropdownSelector = '.my-toggle-select-end'
 		$scope.merchantDetailList = []
+		$scope.endDate = ''
 
 
 
@@ -25,8 +26,25 @@ angular.module('yizhifuApp')
 
 		$scope.onTimeSet = function(newDate, oldDate) {
 			if (newDate != oldDate) {
-				console.log($filter('date')(newDate), oldDate)
+				$scope.endDate = $filter('date')(newDate, 'yyyyMMdd')
+				_getMerchantDetails()
 			}
+		}
+
+		$scope.settle = function(){
+			yService.settle({
+				shopId: $stateParams.merchantid,
+				password: $scope.passwd.password,
+				endDate: $scope.endDate
+			}).then(function(data){
+				if(data.data.result == 0) {
+					alert('结算成功！')
+					$("#passwdModal").modal('hide')
+					_getMerchantDetails()
+				}else{
+                    alert(ERR_MSG[data.data.result])
+				}
+			})
 		}
 
 		$scope.$on('$provinceUpdate', function() {
@@ -39,7 +57,7 @@ angular.module('yizhifuApp')
 				perpage: $scope.config.itemsPerPage,
 				page: $scope.currentPage,
 				shopId: $stateParams.merchantid,
-				endDate: ""
+				endDate: $scope.endDate
 			}).then(function(data) {
 				if (data.data.result == 0) {
 					//如果当前分页没有数据
@@ -60,6 +78,8 @@ angular.module('yizhifuApp')
 					} else {
 						$scope.maxPage = data.data.pages
 						$scope.merchantDetailList = data.data.orders
+
+						$scope.startdate = data.data.orders[0].consumeTime
 					}
 				}
 			})

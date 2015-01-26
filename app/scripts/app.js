@@ -209,7 +209,6 @@ angular
             } else {
                 var result = []
                 angular.forEach($rootScope.pList, function(v, k) {
-                    console.log($rootScope.profile.province)
                     if (v.id == $rootScope.profile.province) {
                         this.push(v.name)
                     }

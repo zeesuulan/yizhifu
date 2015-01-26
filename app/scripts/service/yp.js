@@ -41,41 +41,44 @@ angular.module('yizhifuApp')
 			userCreate: function(data) {
 				return postFun(data, 'userCreate')
 			},
-			userDelete: function(data){
+			userDelete: function(data) {
 				return postFun(data, 'userDelete')
 			},
-			userChangeNickname: function(data){
+			userChangeNickname: function(data) {
 				return postFun(data, 'userChangeNickname')
 			},
-			userChangePassword: function(data){
+			userChangePassword: function(data) {
 				return postFun(data, 'userChangePassword')
 			},
 			userResetPassword: function(data) {
 				return postFun(data, 'userResetPassword')
 			},
+			settle: function(data) {
+				return postFun(data, 'settle')
+			},
 			//用户操作
 			getProvinceList: function() {
 				return getFun({}, "provinceList")
 			},
-			provinceDetail: function(){
+			provinceDetail: function() {
 				return getFun({}, "provinceDetail")
 			},
 			selectProvince: function(data) {
 				return postFun(data, "selectProvince")
 			},
-			queryShop: function(data){
+			queryShop: function(data) {
 				return getFun(data, 'queryShop')
 			},
-			queryOrder: function(data){
+			queryOrder: function(data) {
 				return getFun(data, 'queryOrder')
 			},
-			queryLog: function(data){
+			queryLog: function(data) {
 				return getFun(data, 'queryLog')
 			},
-			queryReport: function(data){
+			queryReport: function(data) {
 				return getFun(data, 'queryReport')
 			},
-			createReport: function(data){
+			createReport: function(data) {
 				return postFun(data, 'createReport')
 			}
 		}
