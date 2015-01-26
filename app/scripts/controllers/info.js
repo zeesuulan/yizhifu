@@ -13,6 +13,7 @@ angular.module('yizhifuApp')
 		$scope.provinceId = $cookieStore.get('provinceId')
 		
 		$scope.$on('provinceChanged', function(evt, data) {
+			
 			$scope.provinceId = data
 				//当前用户选择了什么省份
 			$cookieStore.put('provinceId', parseInt(data))

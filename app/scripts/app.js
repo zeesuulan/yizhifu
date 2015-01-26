@@ -147,7 +147,7 @@ angular
         $rootScope.pList = []
         $rootScope.perPage = 10
 
-        $cookieStore.remove('provinceId')
+        // $cookieStore.remove('provinceId')
 
         $rootScope.getProfile = function() {
 

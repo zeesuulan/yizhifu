@@ -21,18 +21,19 @@ angular.module('yizhifuApp')
 			link: function(scope, element, attrs) {
 
 				scope.datetime = new Date()
-				scope.province = scope.provinceId
+
 				scope.provinceName = ''
 
-				//当前用户选择了什么省份
-				scope.$watch('province', function(oldv, news) {
-					if (scope.province && scope.province != scope.provinceId) {
-						scope.$emit("provinceChanged", scope.province)
-					}
-				})
+				//当前用户选择了什么省份,很尴尬的用法
+				scope.pidChange = function() {
+					scope.$emit("provinceChanged", scope.pList[$('#p').val()].id)
+				}
 
-				scope.$watch('pList', function(oldv, news){
+				scope.$watch('pList', function(oldv, news) {
 					scope.provinceName = $filter('province')()
+					scope.province = scope.provinceId
+					
+					$("#p option[value='" + scope.provinceId + "']").attr("selected", "selected")
 				})
 			}
 		};

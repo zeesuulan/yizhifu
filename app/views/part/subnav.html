@@ -2,9 +2,8 @@
     <div id="province-box">
         <div ng-if="profile.role == 1">
             <label>请选择省平台：</label>
-            <select ng-model="province" ng-options="p.id as p.name for p in pList">
+            <select id="p" ng-model="province" ng-change="pidChange()" ng-options="p.id as p.name for p in pList">
                 <option value="">请选择</option>
-                <!-- <option value="{{p.id}}" ng-repeat="p in pList">{{p.name}}</option> -->
             </select>
         </div>
         <div ng-if="profile.role == 2">
