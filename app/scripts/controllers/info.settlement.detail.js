@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yizhifuApp')
-	.controller('InfoSettlementDetailCtrl', function($scope, $filter, $state, $stateParams, yService) {
+	.controller('InfoSettlementDetailCtrl', function($scope, $rootScope, $filter, $state, $stateParams, yService) {
 
 		$scope.config = {
 			itemsPerPage:  50
@@ -35,11 +35,13 @@ angular.module('yizhifuApp')
 			yService.settle({
 				shopId: $stateParams.merchantid,
 				password: $scope.passwd.password,
-				endDate: $scope.endDate
+				number: $scope.number,
+				firstId: $rootScope.firstId
 			}).then(function(data){
 				if(data.data.result == 0) {
 					alert('结算成功！')
 					$("#passwdModal").modal('hide')
+					$scope.passwd.password = ""
 					_getMerchantDetails()
 				}else{
                     alert(ERR_MSG[data.data.result])
@@ -76,9 +78,12 @@ angular.module('yizhifuApp')
 							return
 						}
 					} else {
+						if($scope.currentPage == 1) {
+							$rootScope.firstId = data.data.orders[0].orderId
+						}
 						$scope.maxPage = data.data.pages
 						$scope.merchantDetailList = data.data.orders
-
+						$scope.number = data.data.number
 						$scope.startdate = data.data.orders[0].consumeTime
 					}
 				}

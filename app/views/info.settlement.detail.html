@@ -29,11 +29,11 @@
     <button class="btn btn-primary glyphicon glyphicon-pencil" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0"></button>
     <a ui-sref="info.settlement" class="btn btn-info">返回上一级</a>
     <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="merchantDetailList.length > 0"></div>
-    <table at-table at-list="merchantDetailList" at-config="config" at-paginated class="table table-striped">
+    <table at-table at-list="merchantDetailList" at-config="config"  class="table table-striped">
         <thead></thead>
         <tbody>
             <tr>
-                <td at-implicit at-title="二级订单ID" at-attribute="orderId"></td>
+                <td at-implicit at-title="二级订单ID" at-attribute="orderId" at-initial-sorting="asc"></td>
                 <td at-implicit at-title="消费码" at-attribute="code"></td>
                 <td at-implicit at-title="订单内容" at-attribute="detail"></td>
                 <td at-implicit at-title="商品属性" at-attribute="attr"></td>
