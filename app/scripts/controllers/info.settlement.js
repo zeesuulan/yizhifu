@@ -35,6 +35,12 @@ angular.module('yizhifuApp')
 		$scope.cityChange = function() {
 			$scope.merchantQuery.area = ""
 
+			if ($scope.merchantQuery.city == "") {
+				$scope.pDetailZones = []
+				$scope.pDetailAreas = []
+				return
+			}
+
 			var index = 0
 			angular.forEach($scope.pDetail.cities, function(v, k) {
 				if ($scope.pDetail.cities[index].cityId == $scope.merchantQuery.city) {
@@ -48,6 +54,11 @@ angular.module('yizhifuApp')
 		$scope.areaChange = function() {
 			$scope.merchantQuery.zone = ""
 
+			if ($scope.merchantQuery.area == "") {
+				$scope.pDetailZones = []
+				return
+			}
+			
 			var index = 0
 			angular.forEach($scope.pDetailAreas, function(v, k) {
 				if ($scope.pDetailAreas[index].areaId == $scope.merchantQuery.area) {
@@ -58,7 +69,14 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.firstTypeChange = function() {
+
 			$scope.merchantQuery.secondType = ""
+
+			//如果没选第一个行业，第二个行业为空
+			if ($scope.merchantQuery.firstType == "") {
+				$scope.pDetailSecondType = []
+				return;
+			}
 
 			var index = 0
 			angular.forEach($scope.pDetail.firstTypes, function(v, k) {
