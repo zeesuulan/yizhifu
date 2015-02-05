@@ -18,8 +18,9 @@ angular.module('yizhifuApp')
 		$scope.dpconfig_end.dropdownSelector = '.my-toggle-select-end'
 		$scope.merchantDetailList = []
 		$scope.endDate = ''
-
+		$scope.settleResult = ''
 		$scope.attrDesc = {
+			"0" : "总金额",
 			"1" : "普通商品",
 			"2" : "促销专区",
 			"3" : "自营商品"
@@ -50,8 +51,12 @@ angular.module('yizhifuApp')
 				firstId: $rootScope.firstId
 			}).then(function(data){
 				if(data.data.result == 0) {
-					alert('结算成功！')
 					$("#passwdModal").modal('hide')
+
+					$scope.settleResult = data.data.summary
+					$scope.excelDownload = data.data.excelUrl
+
+					$("#detailModal").modal('show')
 					$scope.passwd.password = ""
 					_getMerchantDetails()
 				}else{
@@ -59,6 +64,11 @@ angular.module('yizhifuApp')
 				}
 			})
 		}
+
+		$("#detailModal").on('hide.bs.modal', function(){
+			$scope.settleResult = ""
+			$scope.excelDownload = ""
+		})
 
 		$scope.$on('$provinceUpdate', function() {
 			$state.go('info.settlement')

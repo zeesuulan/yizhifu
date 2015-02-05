@@ -31,7 +31,7 @@
             <button class="btn btn-primary" ng-click="clearEndDate()">清空结束时间</button>
         </div>
     </div>
-    <button class="btn btn-primary glyphicon glyphicon-pencil" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0"></button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0">结算</button>
     <a ui-sref="info.settlement" class="btn btn-info">返回上一级</a>
     <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="merchantDetailList.length > 0"></div>
     <table at-table at-list="merchantDetailList" at-config="config"  class="table table-striped">
@@ -52,7 +52,7 @@
     </table>
     <div y-pagination max-page="maxPage" current-page="currentPage" n-id="tableId" ng-show="merchantDetailList.length > 0"></div>
     <!-- 需要提供一个界面输入密码 -->
-    <button class="btn btn-primary glyphicon glyphicon-pencil" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0"></button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0">结算</button>
     <a ui-sref="info.settlement" class="btn btn-info">返回上一级</a>
 
 
@@ -77,6 +77,25 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary" ng-click="settle()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">结算结果</h4>
+                </div>
+                <div class="modal-body form form-horizontal" ng-model="settleResult">
+                    <p ng-repeat="sr in settleResult">{{attrDesc[sr.attr]}}: {{sr.money}}元</p>
+                    <a ng-href="{{excelDownload}}" target="_blank">结算结果文档下载地址</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
