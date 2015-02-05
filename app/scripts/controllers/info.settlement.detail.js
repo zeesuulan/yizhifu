@@ -11,7 +11,7 @@ angular.module('yizhifuApp')
 
 		$scope.dpconfig_end = {
 			dropdownSelector: '.my-toggle-select-start',
-			startView: 'year',
+			startView: 'month',
 			minView: 'minute'
 		}
 
@@ -19,6 +19,11 @@ angular.module('yizhifuApp')
 		$scope.merchantDetailList = []
 		$scope.endDate = ''
 
+		$scope.attrDesc = {
+			"1" : "普通商品",
+			"2" : "促销专区",
+			"3" : "自营商品"
+		}
 
 
 		_getMerchantDetails()
@@ -29,6 +34,12 @@ angular.module('yizhifuApp')
 				$scope.endDate = $filter('date')(newDate, 'yyyyMMdd')
 				_getMerchantDetails()
 			}
+		}
+
+		$scope.clearEndDate = function(){
+			$scope.data.enddate = ""
+			$scope.endDate = ""
+			_getMerchantDetails()
 		}
 
 		$scope.settle = function(){
@@ -86,6 +97,9 @@ angular.module('yizhifuApp')
 						$scope.number = data.data.number
 						$scope.startdate = data.data.orders[0].consumeTime
 					}
+				}else{
+					$scope.merchantDetailList = []
+					alert(ERR_MSG[data.data.result])
 				}
 			})
 		}

@@ -24,6 +24,11 @@
                     <datetimepicker data-ng-model="data.enddate" data-datetimepicker-config="{{dpconfig_end}}" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
                 </ul>
             </div>
+    
+
+        </div>
+        <div class="dpbox col-sm-3" style="width:260px;margin-top:20px;">
+            <button class="btn btn-primary" ng-click="clearEndDate()">清空结束时间</button>
         </div>
     </div>
     <button class="btn btn-primary glyphicon glyphicon-pencil" data-toggle="modal" data-target="#passwdModal" ng-show="merchantDetailList.length > 0"></button>
@@ -36,7 +41,7 @@
                 <td at-implicit at-title="二级订单ID" at-attribute="orderId" at-initial-sorting="asc"></td>
                 <td at-implicit at-title="消费码" at-attribute="code"></td>
                 <td at-implicit at-title="订单内容" at-attribute="detail"></td>
-                <td at-implicit at-title="商品属性" at-attribute="attr"></td>
+                <td at-title="商品属性" at-attribute="attr">{{attrDesc[item.attr]}}</td>
                 <td at-implicit at-title="订单生成时间" at-attribute="generateTime"></td>
                 <td at-implicit at-title="订单销码时间" at-attribute="consumeTime"></td>
                 <td at-implicit at-title="客户手机号" at-attribute="phoneNo"></td>

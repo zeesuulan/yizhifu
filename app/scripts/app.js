@@ -152,11 +152,17 @@ angular
 
         // $cookieStore.remove('provinceId')
 
+        $rootScope.logout = function(){
+            $rootScope.pList = []
+            $cookieStore.remove('provinceId')
+        }
+
         $rootScope.getProfile = function() {
 
             yService.assert().then(function(data) {
                 if (!$state.is('index') && data.data.result != 0) { //非首页 未登录
-                    $state.go('index')
+                    // $state.go('index')
+                    $rootScope.logout()
                 } else if ($state.is('index') && data.data.result == 0) {
                     $state.go('info')
                 }
@@ -187,9 +193,7 @@ angular
             $rootScope.getProfile()
         })
 
-        $rootScope.logout = function(){
-            $rootScope.pList = []
-        }
+        
 
     }).filter("role", function() {
         return function(roleIndex) {
