@@ -29,29 +29,37 @@ angular.module('yizhifuApp')
 			_getLogs()
 		})
 
-		$scope.$watch('logQuery.shopName', function(oldVal, newVal) {
-			$timeout.cancel(snPromise)
-			snPromise = $timeout(function() {
-				if (oldVal != newVal) {
-					_getLogs()
-				}
-			}, 200)
-		})
+		// $scope.$watch('logQuery.shopName', function(oldVal, newVal) {
+		// 	$timeout.cancel(snPromise)
+		// 	snPromise = $timeout(function() {
+		// 		if (oldVal != newVal) {
+		// 			_getLogs()
+		// 		}
+		// 	}, 200)
+		// })
 
-		$scope.$watch('logQuery.operatorId', function(oldVal, newVal) {
-			$timeout.cancel(snPromise)
-			snPromise = $timeout(function() {
-				if (oldVal != newVal) {
-					_getLogs()
-				}
-			}, 200)
-		})
+		// $scope.$watch('logQuery.operatorId', function(oldVal, newVal) {
+		// 	$timeout.cancel(snPromise)
+		// 	snPromise = $timeout(function() {
+		// 		if (oldVal != newVal) {
+		// 			_getLogs()
+		// 		}
+		// 	}, 200)
+		// })
 
-		$scope.$watch('logQuery.endDateTime', function() {
-			if ($scope.logQuery.startDateTime) {
-				_getLogs()
+		// $scope.$watch('logQuery.endDateTime', function() {
+		// 	if ($scope.logQuery.startDateTime) {
+		// 		_getLogs()
+		// 	}
+		// })
+
+		$scope.query = function(){
+			if(!$scope.logQuery.startDateTime || !$scope.logQuery.endDateTime) {
+				alert("请选择起始时间和结束时间！")
+				return
 			}
-		})
+			_getLogs()
+		}
 
 		function _getLogs() {
 			yService.queryLog({
@@ -70,7 +78,7 @@ angular.module('yizhifuApp')
 							//设置当前分页为最大页数，默认为1
 							$scope.currentPage = data.data.pages || 1
 								//更新列表
-							_getList()
+							_getLogs()
 						} else {
 							//如果当前分页为第一页，则什么都不做
 							$scope.currentPage = 1

@@ -35,17 +35,33 @@ angular.module('yizhifuApp')
 				var endDate = $filter('date')(newDate, 'yyyy-MM-dd'),
 					format = 'YYYY-MM-DD HH:mm:ss'
 
-				if ((moment($scope.startdate, '"YYYY年MM月DD日"').valueOf() == moment(endDate).valueOf()) //可以选择当天
-					|| (moment($scope.startdate, format).isBefore(moment(endDate, format)) && //起始时间早于结束时间
-						moment(endDate, format).isBefore(moment()))) { //起始时间早于现在
+				$scope.endDate = moment(endDate).format('YYYYMMDD')
 
-					$scope.endDate = moment(endDate).format('YYYYMMDD')
+				if (moment($scope.startdate, '"YYYY年MM月DD日"').valueOf() == moment(endDate).valueOf()) {
 					_getMerchantDetails()
-					
 				} else {
-					alert('结束时间选择不正确！请重新选择！')
-					$scope.clearEndDate(true)
+
+					if (moment($scope.startdate).isAfter(moment(endDate))) {
+						alert('结束时间不能早于起始时间！请重新选择！')
+						$scope.clearEndDate(true)
+						return
+					}
+
+					if (moment(endDate, format).isAfter(moment())) {
+						alert('结束时间最晚只能设置到昨天！请重新选择！')
+						$scope.clearEndDate(true)
+						return
+					}
+
+					if(moment(endDate).valueOf() - moment($scope.startdate, '"YYYY年MM月DD日"').valueOf() >= 316224000000) {
+						alert('结束时间与起始时间不能超过一年！请重新选择！')
+						$scope.clearEndDate(true)
+						return
+					}
+
+					_getMerchantDetails()
 				}
+
 			}
 		}
 
