@@ -73,7 +73,6 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.saveAdd = function() {
-			console.log($scope.addItem.username)
 			if(!$scope.addItem.username){
 				alert('请填写用户名')
 				return

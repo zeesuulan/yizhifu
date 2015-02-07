@@ -32,13 +32,16 @@ angular.module('yizhifuApp')
 		$scope.onTimeSet = function(newDate, oldDate) {
 			if (newDate != oldDate) {
 
-				var endDate = $filter('date')(newDate, 'yyyyMMdd'),
+				var endDate = $filter('date')(newDate, 'yyyy-MM-dd'),
 					format = 'YYYY-MM-DD HH:mm:ss'
 
-				if (moment($scope.startdate, format).isBefore(moment(endDate, format)) &&  //起始时间早于结束时间
-					moment(endDate, format).isBefore(moment())) { //起始时间早于现在
-					$scope.endDate = endDate
+				if ((moment($scope.startdate, '"YYYY年MM月DD日"').valueOf() == moment(endDate).valueOf()) //可以选择当天
+					|| (moment($scope.startdate, format).isBefore(moment(endDate, format)) && //起始时间早于结束时间
+						moment(endDate, format).isBefore(moment()))) { //起始时间早于现在
+
+					$scope.endDate = moment(endDate).format('YYYYMMDD')
 					_getMerchantDetails()
+					
 				} else {
 					alert('结束时间选择不正确！请重新选择！')
 					$scope.clearEndDate(true)
@@ -49,7 +52,7 @@ angular.module('yizhifuApp')
 		$scope.clearEndDate = function(noRefresh) {
 			$scope.data.enddate = ""
 			$scope.endDate = ""
-			if(!noRefresh){
+			if (!noRefresh) {
 				_getMerchantDetails()
 			}
 		}
@@ -116,7 +119,7 @@ angular.module('yizhifuApp')
 						$scope.maxPage = data.data.pages
 						$scope.merchantDetailList = data.data.orders
 						$scope.number = data.data.number
-						$scope.startdate = data.data.orders[0].consumeTime
+						$scope.startdate = moment(data.data.orders[0].consumeTime.split(' ')[0]).format("YYYY年MM月DD日")
 					}
 				} else {
 					$scope.merchantDetailList = []

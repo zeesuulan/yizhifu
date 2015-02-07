@@ -38,7 +38,7 @@
                 <td at-implicit at-title="生成时间" at-attribute="requestTime"></td>
                 <td at-implicit at-title="开始时间" at-attribute="startDate"></td>
                 <td at-implicit at-title="结束时间" at-attribute="endDate"></td>
-                <td at-implicit at-title="结果" at-attribute="excelUrl" ng-if="item.status != 1">
+                <td at-title="结果" at-attribute="excelUrl" ng-if="item.status != 1">
                     <a ng-href="{{item.excelUrl}}" target="_blank">下载地址</a>
                 </td>
                 <td ng-if="item.status == 1">
