@@ -4,7 +4,7 @@ angular.module('yizhifuApp')
 	.controller('InfoSettlementDetailCtrl', function($scope, $rootScope, $filter, $state, $stateParams, yService) {
 
 		$scope.config = {
-			itemsPerPage:  50
+			itemsPerPage: 50
 		}
 		$scope.currentPage = 1
 		$scope.tableId = 'settlmentDetials'
@@ -12,7 +12,7 @@ angular.module('yizhifuApp')
 		$scope.dpconfig_end = {
 			dropdownSelector: '.my-toggle-select-start',
 			startView: 'month',
-			minView: 'minute'
+			minView: 'day'
 		}
 
 		$scope.dpconfig_end.dropdownSelector = '.my-toggle-select-end'
@@ -20,37 +20,48 @@ angular.module('yizhifuApp')
 		$scope.endDate = ''
 		$scope.settleResult = ''
 		$scope.attrDesc = {
-			"0" : "总金额",
-			"1" : "普通商品",
-			"2" : "促销专区",
-			"3" : "自营商品"
+			"0": "总金额",
+			"1": "普通商品",
+			"2": "促销专区",
+			"3": "自营商品"
 		}
 
 
 		_getMerchantDetails()
 
-
 		$scope.onTimeSet = function(newDate, oldDate) {
 			if (newDate != oldDate) {
-				$scope.endDate = $filter('date')(newDate, 'yyyyMMdd')
+
+				var endDate = $filter('date')(newDate, 'yyyyMMdd'),
+					format = 'YYYY-MM-DD HH:mm:ss'
+
+				if (moment($scope.startdate, format).isBefore(moment(endDate, format)) &&  //起始时间早于结束时间
+					moment(endDate, format).isBefore(moment())) { //起始时间早于现在
+					$scope.endDate = endDate
+					_getMerchantDetails()
+				} else {
+					alert('结束时间选择不正确！请重新选择！')
+					$scope.clearEndDate(true)
+				}
+			}
+		}
+
+		$scope.clearEndDate = function(noRefresh) {
+			$scope.data.enddate = ""
+			$scope.endDate = ""
+			if(!noRefresh){
 				_getMerchantDetails()
 			}
 		}
 
-		$scope.clearEndDate = function(){
-			$scope.data.enddate = ""
-			$scope.endDate = ""
-			_getMerchantDetails()
-		}
-
-		$scope.settle = function(){
+		$scope.settle = function() {
 			yService.settle({
 				shopId: $stateParams.merchantid,
 				password: $scope.passwd.password,
 				number: $scope.number,
 				firstId: $rootScope.firstId
-			}).then(function(data){
-				if(data.data.result == 0) {
+			}).then(function(data) {
+				if (data.data.result == 0) {
 					$("#passwdModal").modal('hide')
 
 					$scope.settleResult = data.data.summary
@@ -59,13 +70,13 @@ angular.module('yizhifuApp')
 					$("#detailModal").modal('show')
 					$scope.passwd.password = ""
 					_getMerchantDetails()
-				}else{
-                    alert(ERR_MSG[data.data.result])
+				} else {
+					alert(ERR_MSG[data.data.result])
 				}
 			})
 		}
 
-		$("#detailModal").on('hide.bs.modal', function(){
+		$("#detailModal").on('hide.bs.modal', function() {
 			$scope.settleResult = ""
 			$scope.excelDownload = ""
 		})
@@ -99,7 +110,7 @@ angular.module('yizhifuApp')
 							return
 						}
 					} else {
-						if($scope.currentPage == 1) {
+						if ($scope.currentPage == 1) {
 							$rootScope.firstId = data.data.orders[0].orderId
 						}
 						$scope.maxPage = data.data.pages
@@ -107,7 +118,7 @@ angular.module('yizhifuApp')
 						$scope.number = data.data.number
 						$scope.startdate = data.data.orders[0].consumeTime
 					}
-				}else{
+				} else {
 					$scope.merchantDetailList = []
 					alert(ERR_MSG[data.data.result])
 				}

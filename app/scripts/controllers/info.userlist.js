@@ -73,6 +73,24 @@ angular.module('yizhifuApp')
 		}
 
 		$scope.saveAdd = function() {
+			console.log($scope.addItem.username)
+			if(!$scope.addItem.username){
+				alert('请填写用户名')
+				return
+			}
+			if(!$scope.addItem.nickname){
+				alert('请填写用户姓名')
+				return
+			}
+			if(!$scope.addItem.password) {
+				alert('密码长度需6位以上')
+				return
+			}
+			if(!$scope.addItem.role) {
+				alert('请选择用户角色')
+				return
+			}
+
 			yService.userCreate({
 				username: $scope.addItem.username,
 				password: $scope.addItem.password,

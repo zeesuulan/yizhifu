@@ -17,7 +17,7 @@
             <div class="dropdown">
                 <a class="dropdown-toggle my-toggle-select-end" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                     <div class="input-append input-group">
-                        <input type="text" class="form-control" value="{{data.enddate|date:'yyyy年MM月dd日 HH:mm:ss'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" value="{{data.enddate|date:'yyyy年MM月dd日'}}"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="modal-body form form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">密码</label>
+                        <label class="col-sm-3 control-label" minlength='6' maxlength='255'>密码</label>
                         <div class="col-sm-5">
                             <input type="password" ng-model="passwd.password" class="form-control" />
                         </div>

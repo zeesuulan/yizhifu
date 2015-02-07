@@ -161,11 +161,12 @@ angular
 
             yService.assert().then(function(data) {
                 if (!$state.is('index') && data.data.result != 0) { //非首页 未登录
-                    // $state.go('index')
                     $rootScope.logout()
+                    $state.go('index')
                 } else if ($state.is('index') && data.data.result == 0) {
                     $state.go('info')
                 }
+
 
                 //为了防止后面出错，当profile为undefined时，不进行后面的逻辑
                 if (!data.data.profile) return

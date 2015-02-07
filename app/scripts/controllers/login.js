@@ -13,23 +13,24 @@ angular.module('yizhifuApp')
 		$scope.login = function() {
 
 			if (!$scope.username || !$scope.password) {
-				alert("用户名或密码不为空！")
+				alert("用户名或密码格式不正确！")
 				return
 			}
 
-			yService.login({
-				username: $scope.username,
-				password: $scope.password
-			}).then(function(data) {
+			if ($scope.username && $scope.password) {
+				yService.login({
+					username: $scope.username,
+					password: $scope.password
+				}).then(function(data) {
 
-				if (data.data.result == 0) {
-					//保存用户信息
-					$state.go("info")
-				} else {
-					alert(ERR_MSG[data.data.result])
-				}
-			})
-
+					if (data.data.result == 0) {
+						//保存用户信息
+						$state.go("info")
+					} else {
+						alert(ERR_MSG[data.data.result])
+					}
+				})
+			}
 		}
 
 	});
