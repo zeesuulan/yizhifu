@@ -167,7 +167,6 @@ angular
                     $state.go('info')
                 }
 
-
                 //为了防止后面出错，当profile为undefined时，不进行后面的逻辑
                 if (!data.data.profile) return
 

@@ -3,10 +3,9 @@
 angular.module('yizhifuApp')
   .controller('InfoModifyinfoCtrl', function ($rootScope, $scope, yService) {
 
-    	$rootScope.$on("$profileReady", function(){
-            if($rootScope.profile)
-    		$scope.nickname = $rootScope.profile.nickname
-    	})
+        $rootScope.$watch('profile.nickname', function(){
+            $scope.nickname = $rootScope.profile.nickname
+        })
 
     	$scope.modifyInfoClick = function(){
     		if(!$scope.nickname || !$scope.passwd) {
