@@ -29,30 +29,6 @@ angular.module('yizhifuApp')
 			_getLogs()
 		})
 
-		// $scope.$watch('logQuery.shopName', function(oldVal, newVal) {
-		// 	$timeout.cancel(snPromise)
-		// 	snPromise = $timeout(function() {
-		// 		if (oldVal != newVal) {
-		// 			_getLogs()
-		// 		}
-		// 	}, 200)
-		// })
-
-		// $scope.$watch('logQuery.operatorId', function(oldVal, newVal) {
-		// 	$timeout.cancel(snPromise)
-		// 	snPromise = $timeout(function() {
-		// 		if (oldVal != newVal) {
-		// 			_getLogs()
-		// 		}
-		// 	}, 200)
-		// })
-
-		// $scope.$watch('logQuery.endDateTime', function() {
-		// 	if ($scope.logQuery.startDateTime) {
-		// 		_getLogs()
-		// 	}
-		// })
-
 		$scope.query = function(){
 			if(!$scope.logQuery.startDateTime || !$scope.logQuery.endDateTime) {
 				alert("请选择起始时间和结束时间！")
