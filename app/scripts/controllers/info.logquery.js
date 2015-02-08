@@ -34,7 +34,35 @@ angular.module('yizhifuApp')
 				alert("请选择起始时间和结束时间！")
 				return
 			}
-			_getLogs()
+
+			var startDate = $scope.logQuery.startDateTime,
+				endDate = $scope.logQuery.endDateTime,
+				startTime = new Date(startDate).getTime(),
+				endTime = new Date(endDate).getTime(),
+				currentTime = new Date(moment().format('YYYY-MM-DD')).getTime()
+
+			if (startTime == endTime) {
+				_getLogs()
+			} else {
+
+				if (startTime > endTime) {
+					alert('结束时间不能早于起始时间！请重新选择！')
+					return
+				}
+
+				if (endTime > currentTime) {
+					alert('结束时间最晚只能设置到昨天！请重新选择！')
+					return
+				}
+
+				if ((endTime - startTime) >= 31622400000) {
+					alert('结束时间与起始时间不能超过一年！请重新选择！')
+					return
+				}
+
+				_getLogs()
+			}
+
 		}
 
 		function _getLogs() {

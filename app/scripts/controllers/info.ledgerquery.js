@@ -29,23 +29,27 @@ angular.module('yizhifuApp')
 
 			var startDate = $scope.data.startdate,
 				endDate = $scope.data.enddate,
-				format = 'YYYY年MM月DD日'
+				format = 'YYYY年MM月DD日',
+				startTime = new Date(startDate).getTime(),
+				endTime = new Date(endDate).getTime(),
+				currentTime = new Date(moment().format('YYYY-MM-DD')).getTime()
 
-			if (moment(startDate, format).valueOf() == moment(endDate, format).valueOf()) {
+
+			if (startTime == endTime) {
 				_postCreate()
 			} else {
 
-				if (moment(startDate, format).isAfter(moment(endDate, format))) {
+				if (startTime > endTime) {
 					alert('结束时间不能早于起始时间！请重新选择！')
 					return
 				}
 
-				if (moment(endDate, format).isAfter(moment())) {
+				if (endTime > currentTime) {
 					alert('结束时间最晚只能设置到昨天！请重新选择！')
 					return
 				}
 
-				if (moment(endDate, format).valueOf() - moment(startDate, format).valueOf() >= 316224000000) {
+				if ((endTime - startTime) >= 31622400000) {
 					alert('结束时间与起始时间不能超过一年！请重新选择！')
 					return
 				}
