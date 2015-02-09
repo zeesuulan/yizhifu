@@ -50,11 +50,6 @@ angular.module('yizhifuApp')
 					return
 				}
 
-				if (endTime > currentTime) {
-					alert('结束时间最晚只能设置到昨天！请重新选择！')
-					return
-				}
-
 				if ((endTime - startTime) >= 31622400000) {
 					alert('结束时间与起始时间不能超过一年！请重新选择！')
 					return

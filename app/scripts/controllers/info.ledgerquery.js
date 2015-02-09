@@ -44,7 +44,7 @@ angular.module('yizhifuApp')
 					return
 				}
 
-				if (endTime > currentTime) {
+				if (endTime > (currentTime - 86400000)) {
 					alert('结束时间最晚只能设置到昨天！请重新选择！')
 					return
 				}
