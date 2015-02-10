@@ -3,27 +3,33 @@
         <li ng-click="open('userManagement')" class="navbtn">用户管理</li>
         <li ng-show="isShowUserManagement">
             <ul>
-                <li class="subnavbtn" ng-if="profile.role == 0"><a ui-sref="info.userlist">用户列表</a>
+                <li class="subnavbtn" ng-if="profile.role == 0">
+                    <a ui-sref="info.userlist" ng-class="{active:currentURL=='userlist'}">用户列表</a>
                 </li>
-                <li class="subnavbtn"><a ui-sref="info.modifyinfo">修改信息</a>
+                <li class="subnavbtn">
+                    <a ui-sref="info.modifyinfo" ng-class="{active:currentURL=='modifyinfo'}">修改信息</a>
                 </li>
-                <li class="subnavbtn"><a ui-sref="info.modifypwd">修改密码</a>
+                <li class="subnavbtn">
+                    <a ui-sref="info.modifypwd" ng-class="{active:currentURL=='modifypwd'}">修改密码</a>
                 </li>
             </ul>
         </li>
         <li ng-click="open('settleManagement')" class="navbtn" ng-if="profile.role != 0">结算管理</li>
         <li ng-show="isShowSettleManagement" ng-if="profile.role != 0">
             <ul>
-                <li class="subnavbtn"><a ui-sref="info.settlement">商户结算</a>
+                <li class="subnavbtn">
+                    <a ui-sref="info.settlement" ng-class="{active:currentURL=='settlement'}">商户结算</a>
                 </li>
-                <li class="subnavbtn"><a ui-sref="info.ledgerquery">总账查询</a>
+                <li class="subnavbtn">
+                    <a ui-sref="info.ledgerquery" ng-class="{active:currentURL=='ledgerquery'}">总账查询</a>
                 </li>
             </ul>
         </li>
         <li ng-click="open('logQuery')" class="navbtn" ng-if="profile.role != 0">日志查询</li>
         <li ng-show="isShowLogQuery" ng-if="profile.role != 0">
             <ul>
-                <li class="subnavbtn"><a ui-sref="info.logquery">结算日志</a>
+                <li class="subnavbtn">
+                    <a ui-sref="info.logquery" ng-class="{active:currentURL=='logquery'}">结算日志</a>
                 </li>
             </ul>
         </li>

@@ -7,7 +7,7 @@
  * # yMenu
  */
 angular.module('yizhifuApp')
-	.directive('yMenu', function($cookieStore, $rootScope) {
+	.directive('yMenu', function($cookieStore, $rootScope, $state) {
 		return {
 			templateUrl: 'views/part/menu.html',
 			restrict: 'A',
@@ -17,6 +17,9 @@ angular.module('yizhifuApp')
 				scope.isShowUserManagement = false
 				scope.isShowSettleManagement = false
 				scope.isShowLogQuery = false
+				scope.currentURL = $state.current.url
+
+				openList()
 
 				var toggle = {
 					"userManagement": function() {
@@ -33,6 +36,27 @@ angular.module('yizhifuApp')
 						scope.isShowUserManagement = false
 						scope.isShowSettleManagement = false
 						scope.isShowLogQuery = !scope.isShowLogQuery
+					}
+				}
+
+				$rootScope.$on('$stateChangeStart', function(event, toState) {
+					scope.currentURL = toState.url
+					openList()
+				})
+
+				function openList() {
+					if ($.inArray(scope.currentURL, ['userlist', 'modifyinfo', 'modifypwd']) > -1) {
+						scope.isShowUserManagement = true
+						scope.isShowSettleManagement = false
+						scope.isShowLogQuery = false
+					} else if ($.inArray(scope.currentURL, ['settlement', 'ledgerquery']) > -1) {
+						scope.isShowUserManagement = false
+						scope.isShowSettleManagement = true
+						scope.isShowLogQuery = false
+					} else if ($.inArray(scope.currentURL, ['logquery']) > -1) {
+						scope.isShowUserManagement = false
+						scope.isShowSettleManagement = false
+						scope.isShowLogQuery = true
 					}
 				}
 
